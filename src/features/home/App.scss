@@ -1,0 +1,42 @@
+@import '../../styles/mixins';
+
+.fond-site2 {
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  opacity: 0.10;
+}
+
+.full-page {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.main-loader {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+
+  p {
+    color: theme-color('primary');
+    margin-top: 50px;
+  }
+}
+.default-header-menu {
+  .navbar-nav {
+    flex-direction: row;
+  }
+  .nav-link {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}

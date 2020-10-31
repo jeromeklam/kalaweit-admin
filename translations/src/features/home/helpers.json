@@ -1,0 +1,314 @@
+[
+  {
+    "id": "app.features.home.app.menu.home",
+    "defaultMessage": "Home",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 35,
+      "column": 13
+    },
+    "end": {
+      "line": 35,
+      "column": 92
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.signin",
+    "defaultMessage": "Sign in",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 42,
+      "column": 13
+    },
+    "end": {
+      "line": 42,
+      "column": 97
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.signout",
+    "defaultMessage": "Sign out",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 49,
+      "column": 13
+    },
+    "end": {
+      "line": 49,
+      "column": 99
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.dashboard",
+    "defaultMessage": "Dashboard",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 65,
+      "column": 8
+    },
+    "end": {
+      "line": 65,
+      "column": 97
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.person",
+    "defaultMessage": "Members",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 74,
+      "column": 13
+    },
+    "end": {
+      "line": 74,
+      "column": 97
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.cause",
+    "defaultMessage": "Missions",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 82,
+      "column": 13
+    },
+    "end": {
+      "line": 82,
+      "column": 97
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.donation",
+    "defaultMessage": "Donations",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 92,
+      "column": 8
+    },
+    "end": {
+      "line": 92,
+      "column": 96
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.receipt",
+    "defaultMessage": "Receipts",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 101,
+      "column": 13
+    },
+    "end": {
+      "line": 101,
+      "column": 99
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.certificate",
+    "defaultMessage": "Certificates",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 110,
+      "column": 8
+    },
+    "end": {
+      "line": 113,
+      "column": 10
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.administrativ",
+    "defaultMessage": "Administrativ",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 123,
+      "column": 8
+    },
+    "end": {
+      "line": 126,
+      "column": 10
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.paymentType",
+    "defaultMessage": "Payment types",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 136,
+      "column": 12
+    },
+    "end": {
+      "line": 139,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.causeType",
+    "defaultMessage": "Missions",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 148,
+      "column": 12
+    },
+    "end": {
+      "line": 148,
+      "column": 100
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.session",
+    "defaultMessage": "Sessions",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 157,
+      "column": 12
+    },
+    "end": {
+      "line": 157,
+      "column": 98
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.settings",
+    "defaultMessage": "Settings",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 168,
+      "column": 8
+    },
+    "end": {
+      "line": 168,
+      "column": 95
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.site",
+    "defaultMessage": "Locations",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 178,
+      "column": 12
+    },
+    "end": {
+      "line": 178,
+      "column": 96
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.siteType",
+    "defaultMessage": "Locations types",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 187,
+      "column": 12
+    },
+    "end": {
+      "line": 190,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.causeMainType",
+    "defaultMessage": "Programs",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 199,
+      "column": 12
+    },
+    "end": {
+      "line": 202,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.clientCategories",
+    "defaultMessage": "Person categories",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 211,
+      "column": 12
+    },
+    "end": {
+      "line": 214,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.clientType",
+    "defaultMessage": "Person types",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 223,
+      "column": 12
+    },
+    "end": {
+      "line": 226,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.species",
+    "defaultMessage": "Species",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 235,
+      "column": 12
+    },
+    "end": {
+      "line": 235,
+      "column": 97
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.subspecies",
+    "defaultMessage": "Subspecies",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 244,
+      "column": 12
+    },
+    "end": {
+      "line": 247,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.emails",
+    "defaultMessage": "Notifications",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 256,
+      "column": 12
+    },
+    "end": {
+      "line": 259,
+      "column": 14
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.datas",
+    "defaultMessage": "Datas",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 267,
+      "column": 17
+    },
+    "end": {
+      "line": 267,
+      "column": 98
+    }
+  },
+  {
+    "id": "app.features.home.app.menu.aboutUs",
+    "defaultMessage": "About Us",
+    "file": "src/features/home/helpers.js",
+    "start": {
+      "line": 276,
+      "column": 13
+    },
+    "end": {
+      "line": 276,
+      "column": 99
+    }
+  }
+]

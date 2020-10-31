@@ -1,0 +1,119 @@
+[
+  {
+    "id": "app.features.auth.login.lostPassword",
+    "defaultMessage": "Lost password",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 165,
+      "column": 14
+    },
+    "end": {
+      "line": 168,
+      "column": 16
+    }
+  },
+  {
+    "id": "app.features.auth.login.username",
+    "defaultMessage": "Email address",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 226,
+      "column": 20
+    },
+    "end": {
+      "line": 229,
+      "column": 22
+    }
+  },
+  {
+    "id": "app.features.auth.login.askPassword",
+    "defaultMessage": "Send password reset email",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 197,
+      "column": 18
+    },
+    "end": {
+      "line": 200,
+      "column": 20
+    }
+  },
+  {
+    "id": "app.features.auth.login.back",
+    "defaultMessage": "Back",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 208,
+      "column": 18
+    },
+    "end": {
+      "line": 208,
+      "column": 94
+    }
+  },
+  {
+    "id": "app.features.auth.login.title",
+    "defaultMessage": "Login",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 218,
+      "column": 14
+    },
+    "end": {
+      "line": 218,
+      "column": 92
+    }
+  },
+  {
+    "id": "app.features.auth.login.password",
+    "defaultMessage": "Password",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 246,
+      "column": 20
+    },
+    "end": {
+      "line": 249,
+      "column": 22
+    }
+  },
+  {
+    "id": "app.features.auth.login.rememberMe",
+    "defaultMessage": "Remember me",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 266,
+      "column": 22
+    },
+    "end": {
+      "line": 269,
+      "column": 24
+    }
+  },
+  {
+    "id": "app.features.auth.login.connexion",
+    "defaultMessage": "Connexion",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 282,
+      "column": 20
+    },
+    "end": {
+      "line": 285,
+      "column": 22
+    }
+  },
+  {
+    "id": "app.features.auth.login.forgotPassword",
+    "defaultMessage": "Forgot password ?",
+    "file": "src/features/auth/Signin.js",
+    "start": {
+      "line": 299,
+      "column": 24
+    },
+    "end": {
+      "line": 302,
+      "column": 26
+    }
+  }
+]
