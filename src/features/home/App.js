@@ -39,7 +39,6 @@ export class App extends Component {
     this.state = {
       mySocket: socket,
     };
-    this.onGeo = this.onGeo.bind(this);
     log.getLogger("jsonapi-front.jsonApiNormalizer").setLevel("WARN");
     log.getLogger("react-bootstrap-front.inputMask").setLevel("WARN");
     log.getLogger("react-bootstrap-front.inputSelect").setLevel("WARN");
@@ -51,9 +50,6 @@ export class App extends Component {
     } else {
       // Check auth...
       this.props.actions.checkIsAuthenticated();
-    }
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.onGeo);
     }
   }
 
@@ -103,15 +99,6 @@ export class App extends Component {
       } else {
         this.props.actions.closeSocket();
       }
-    }
-  }
-
-  onGeo(position) {
-    if (position && position.coords) {
-      this.props.actions.setCoords({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      });
     }
   }
 
