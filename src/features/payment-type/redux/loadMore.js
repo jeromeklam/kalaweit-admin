@@ -23,10 +23,10 @@ export function loadMore(args = {}, reload = false) {
         });
       }
       const promise = new Promise((resolve, reject) => {
-        let filters = getState().paymentType.filters.asJsonApiObject();
         let params = {
-          page: { number: getState().paymentType.page_number, size: getState().paymentType.page_size },
-          ...filters,
+          page: { 
+            number: getState().paymentType.page_number, 
+            size: getState().paymentType.page_size },
         };
         let sort = '';
         getState().paymentType.sort.forEach(elt => {

@@ -52,9 +52,17 @@ export class DashboardGrid extends Component {
     this.state = {
       breakpoint: 'lg',
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
+      editable: false,
     };
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
+    this.onResetLayout = this.onResetLayout.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onEditStop = this.onEditStop.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.actions.loadMore();
   }
 
   onLayoutChange(layout, layouts) {
@@ -66,12 +74,27 @@ export class DashboardGrid extends Component {
     this.setState({ breakpoint });
   }
 
+  onResetLayout() {
+    const originalLayouts = {};
+    const layouts =  JSON.parse(JSON.stringify(originalLayouts));
+    saveToLS('layouts', layouts);
+    this.setState({ layouts });
+  }
+
+  onEdit() {
+    this.setState({editable: true});
+  }
+
+  onEditStop() {
+    this.setState({editable: false});
+  }
+
   render() {
     const { layouts, breakpoint } = this.state;
     if (this.props.auth.authenticated && this.props.dashboard.stats) {
       return (
         <div>
-          <DashboardToolbar />
+          <DashboardToolbar onResetLayout={this.onResetLayout} onEdit={this.onEdit} onEditStop={this.onEditStop} />
           <ResponsiveReactGridLayout
             className="layout"
             cols={{ lg: 36, md: 36, sm: 36, xs: 36, xxs: 36 }}

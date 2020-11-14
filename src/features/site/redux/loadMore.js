@@ -23,10 +23,11 @@ export function loadMore(args = {}, reload = false) {
         });
       }
       const promise = new Promise((resolve, reject) => {
-        let filters = getState().site.filters.asJsonApiObject();
         let params = {
-          page: { number: getState().site.page_number, size: getState().site.page_size },
-          ...filters,
+          page: { 
+            number: getState().site.page_number, 
+            size: getState().site.page_size, 
+          },
         };
         let sort = '';
         getState().site.sort.forEach(elt => {
@@ -67,8 +68,6 @@ export function loadMore(args = {}, reload = false) {
   };
 }
 
-// Async action saves request error by default, this method is used to dismiss the error info.
-// If you don't want errors to be saved in Redux store, just ignore this method.
 export function dismissLoadMoreError() {
   return {
     type: SITE_LOAD_MORE_DISMISS_ERROR,

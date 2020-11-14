@@ -14,7 +14,7 @@ function Form(props) {
     handleCancel,
     handleNavTab,
     getErrorMessage,
-  } = useForm(props.item, '1', props.onSubmit, props.onCancel, props.onNavTab, props.errors);
+  } = useForm(props.item, props.tab, props.onSubmit, props.onCancel, props.onNavTab, props.errors, props.intl);
   const tabs = [
     {
       key: '1',
@@ -35,9 +35,9 @@ function Form(props) {
     <ResponsiveModalOrForm
       className="m-5"
       title={values.site_name}
-      size="lg"
-      modal
-      tab={values._currentTab}
+      size="md"
+      modal={true}
+      tab={values.currentTab}
       tabs={tabs}
       onSubmit={handleSubmit}
       onCancel={handleCancel}
@@ -45,10 +45,10 @@ function Form(props) {
       onClose={props.onClose}
     >
       <InputHidden name="id" id="id" value={values.id} />
-      {values._currentTab === '1' && (
+      {values.currentTab === '1' && (
         <div>
           <div className="row">
-            <div className="col-sm-12">
+            <div className="col-xs-w12">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.name',
@@ -61,7 +61,7 @@ function Form(props) {
                 error={getErrorMessage('site_name')}
               />
             </div>
-            <div className="col-sm-12">
+            <div className="col-xs-w12">
               <InputSelect
                 label={intl.formatMessage({
                   id: 'app.features.site.form.type',
@@ -75,7 +75,7 @@ function Form(props) {
                 addempty={true}
               />
             </div>
-            <div className="col-sm-12">
+            <div className="col-xs-w12">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.code',
@@ -89,7 +89,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.address',
@@ -103,7 +103,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-9">
+            <div className="col-xs-w9">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.postalCode',
@@ -114,7 +114,7 @@ function Form(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-sm-27">
+            <div className="col-xs-w27">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.town',
@@ -128,7 +128,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.area',
@@ -143,10 +143,10 @@ function Form(props) {
           </div>
         </div>
       )}
-      {values._currentTab === '2' && (
+      {values.currentTab === '2' && (
         <div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <InputText
                 label={intl.formatMessage({
                   id: 'app.features.site.form.plots',
@@ -160,7 +160,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <ClientInputPicker
                 label={intl.formatMessage({
                   id: 'app.features.site.form.owner',
@@ -175,7 +175,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <ClientInputPicker
                 label={intl.formatMessage({
                   id: 'app.features.site.form.sanitary',
@@ -190,7 +190,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-xs-w36">
               <InputTextarea
                 label={intl.formatMessage({
                   id: 'app.features.site.form.comments',

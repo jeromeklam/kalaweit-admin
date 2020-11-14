@@ -16,7 +16,7 @@ function Form(props) {
   return (
     <ResponsiveModalOrForm
       className="m-5"
-      size="lg"
+      size="sm"
       modal={true}
       title={intl.formatMessage({
         id: 'app.features.paymentType.form.title',
@@ -29,7 +29,7 @@ function Form(props) {
       <div className="card-body">
         <InputHidden name="id" id="id" value={values.id} />
         <div className="row">
-          <div className="col-24">
+          <div className="col-xs-w24">
             <InputText
               label={intl.formatMessage({
                 id: 'app.features.paymentType.form.name',
@@ -42,7 +42,7 @@ function Form(props) {
               error={getErrorMessage('ptyp_name')}
             />
           </div>
-          <div className="col-12">
+          <div className="col-xs-w12">
             <InputCheckbox
               label={intl.formatMessage({
                 id: 'app.features.paymentType.form.receipt',
@@ -57,7 +57,7 @@ function Form(props) {
           </div>
         </div>
         <div className="row">
-          <div className="col-18">
+          <div className="col-xs-w18">
             <InputDate
               label={intl.formatMessage({
                 id: 'app.features.paymentType.form.from',
@@ -70,7 +70,7 @@ function Form(props) {
               error={getErrorMessage('ptyp_from')}
             />
           </div>
-          <div className="col-18">
+          <div className="col-xs-w18">
             <InputDate
               label={intl.formatMessage({
                 id: 'app.features.paymentType.form.to',

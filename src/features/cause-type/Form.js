@@ -34,7 +34,7 @@ function Form(props) {
   return (
     <ResponsiveModalOrForm
       className="m-5"
-      size="lg"
+      size="md"
       height="md"
       modal={true}
       title={props.intl.formatMessage({
@@ -47,7 +47,7 @@ function Form(props) {
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div className="row">
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputText
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.name',
@@ -61,7 +61,7 @@ function Form(props) {
             error={getErrorMessage('caut_name')}
           />
         </div>
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.mainType',
@@ -76,7 +76,7 @@ function Form(props) {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md-w12">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.mntType',
@@ -90,7 +90,7 @@ function Form(props) {
             options={causeTypeMntType}
           />
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputMonetary
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.minMnt',
@@ -106,7 +106,7 @@ function Form(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputMonetary
             label={maxLabel}
             labelTop={true}
@@ -121,7 +121,7 @@ function Form(props) {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md-w12">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.family',
@@ -135,7 +135,7 @@ function Form(props) {
             options={causeTypeFamily}
           />
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputCheckbox
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.receipt',
@@ -147,7 +147,7 @@ function Form(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputCheckbox
             label={props.intl.formatMessage({
               id: 'app.features.causeType.form.certificate',

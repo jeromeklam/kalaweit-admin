@@ -170,7 +170,7 @@ export class List extends Component {
           intl={intl}
           cols={cols}
           items={items}
-          quickSearch={quickSearch}
+          quickSearch={null}
           mainCol="email_subject"
           filterIcon={filterIcon}
           cancelPanelIcon={<CancelPanelIcon />}
@@ -181,7 +181,7 @@ export class List extends Component {
           inlineActions={inlineActions}
           globalActions={globalActions}
           sort={this.props.email.sort}
-          filters={this.props.email.filters}
+          filters={null}
           onSearch={this.onQuickSearch}
           onClearFilters={this.onClearFilters}
           onSort={this.onUpdateSort}

@@ -23,7 +23,7 @@ function Form(props) {
         id: 'app.features.data.form.title',
         defaultMessage: 'Custom Data',
       })}
-      size="lg"
+      size="md"
       onSubmit={handleSubmit}
       onCancel={handleCancel}
       onClose={props.onClose}
@@ -31,7 +31,7 @@ function Form(props) {
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div classname="row">
-        <div className="col-sm-36">
+        <div className="col-sm-w36">
           <InputText
             label={props.intl.formatMessage({
               id: 'app.features.data.form.name',
@@ -46,7 +46,7 @@ function Form(props) {
         </div>
       </div>
       <div classname="row">
-        <div className="col-sm-36">
+        <div className="col-sm-w36">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.data.form.type',
@@ -64,7 +64,7 @@ function Form(props) {
       </div>
       {values.data_type === 'LIST' && (
         <div classname="row">
-          <div className="col-sm-36">
+          <div className="col-sm-w36">
             <InputStringarray
               label={props.intl.formatMessage({
                 id: 'app.features.data.form.values',

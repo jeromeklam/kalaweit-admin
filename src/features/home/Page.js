@@ -18,6 +18,7 @@ import {
 } from '../icons';
 import { getFullName } from '../user';
 import { SimpleForm } from '../auth';
+import { causeTypeAsOptions } from '../cause-type';
 import { CenteredLoading9X9 } from '../ui';
 import { appMenu } from './';
 
@@ -51,7 +52,7 @@ export class Page extends Component {
 
   render() {
     const icons = [];
-    const myMenu = appMenu();
+    const myMenu = appMenu(causeTypeAsOptions(this.props.causeTypes));
     if (this.props.home.socketOn && this.props.auth.authenticated) {
       if (this.props.home.socketConnected) {
         icons.push({
@@ -126,6 +127,7 @@ function mapStateToProps(state) {
   return {
     home: state.home,
     auth: state.auth,
+    causeTypes: state.causeType.items || [],
   };
 }
 
