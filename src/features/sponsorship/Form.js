@@ -31,7 +31,7 @@ function Form(props) {
       })}
       size="lg"
       height="md"
-      tab={values._currentTab}
+      tab={values.currentTab}
       tabs={tabs}
       onNavTab={handleNavTab}
       onSubmit={handleSubmit}
@@ -41,10 +41,10 @@ function Form(props) {
     >
       <div className="card-body">
         <InputHidden name="id" id="id" value={values.id} />
-        {values._currentTab === '1' && (
+        {values.currentTab === '1' && (
           <div>
             <div className="row">
-              <div className="col-sm-26">
+              <div className="col-sm-w26">
                 {props.mode === 'client' && (
                   <CauseInputPicker
                     label={intl.formatMessage({
@@ -74,7 +74,7 @@ function Form(props) {
                   />
                 )}
               </div>
-              <div className="col-sm-10">
+              <div className="col-sm-w10">
                 <InputCheckbox
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.news',
@@ -90,7 +90,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-13">
+              <div className="col-sm-w13">
                 <InputDate
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.from',
@@ -103,7 +103,7 @@ function Form(props) {
                   error={getErrorMessage('spo_from')}
                 />
               </div>
-              <div className="col-sm-13">
+              <div className="col-sm-w13">
                 <InputDate
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.to',
@@ -116,7 +116,7 @@ function Form(props) {
                   error={getErrorMessage('spo_to')}
                 />
               </div>
-              <div className="col-sm-10">
+              <div className="col-sm-w10">
                 <InputCheckbox
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.site',
@@ -132,7 +132,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-w8">
                 <InputMonetary
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.amount',
@@ -148,7 +148,7 @@ function Form(props) {
                   error={getErrorMessage('spo_mnt')}
                 />
               </div>
-              <div className="col-sm-10">
+              <div className="col-sm-w10">
                 <InputSelect
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.type',
@@ -162,7 +162,7 @@ function Form(props) {
                   error={getErrorMessage('ptyp_id')}
                 />
               </div>
-              <div className="col-sm-3">
+              <div className="col-sm-w3">
                 <InputText
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.day',
@@ -178,7 +178,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-36">
+              <div className="col-sm-w36">
                 <InputText
                   label={intl.formatMessage({
                     id: 'app.features.sponsorship.form.comments',
@@ -195,9 +195,9 @@ function Form(props) {
             </div>
           </div>
         )}
-        {values._currentTab === '2' && (
+        {values.currentTab === '2' && (
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-sm-w36">
               <InputSponsors
                 label="Invités"
                 id="spo_sponsors"

@@ -154,7 +154,7 @@ export default class SearchModal extends Component {
                 );
               } else {
                 return (
-                  <div className="col-sm-18" key={`${item.name}-${i}`}>
+                  <div className="col-sm-w18" key={`${item.name}-${i}`}>
                     <input
                       className="form-control"
                       value={item.value}

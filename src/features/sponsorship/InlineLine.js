@@ -41,32 +41,32 @@ export default class InlineLine extends Component {
           )}
           key={sponsorship.id}
         >
-          <div className="col-4 col-first">
+          <div className="col-xs-w4 col-first">
             <span>{getPaymentTypeLabel(paymentTypes, sponsorship.payment_type.id)}</span>
           </div>
-          <div className="col-4 text-right">
+          <div className="col-xs-w4 text-right">
             <span>{displayMonetary(sponsorship.spo_mnt, sponsorship.spo_money)}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayDate(sponsorship.spo_from)}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayDate(sponsorship.spo_to)}</span>
           </div>
-          <div className="col-8">
+          <div className="col-xs-w8">
             {this.props.mode === 'cause' ? (
               <span>{getFullName(sponsorship.client)}</span>
             ) : (
               <span>{sponsorship.cause.cau_name}</span>
             )}
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayBool(sponsorship.spo_display_site,<ColCheckIcon className="text-secondary"/>,'')}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayBool(sponsorship.spo_send_news,<ColCheckIcon className="text-secondary"/>,'')}</span>
           </div>
-          <div className="col-4 text-right col-last">
+          <div className="col-xs-w4 text-right col-last">
             {highlight && (
               <div className="btn-group btn-group-xs" role="group" aria-label="...">
                 <button

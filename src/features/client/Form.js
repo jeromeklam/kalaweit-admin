@@ -79,7 +79,7 @@ function Form(props) {
     <ResponsiveModalOrForm
       title={title}
       className="m-5"
-      tab={values._currentTab}
+      tab={values.currentTab}
       tabs={!props.modify ? tabs : tabs.concat(modifTabs)}
       size="xl"
       onNavTab={handleNavTab}
@@ -90,10 +90,10 @@ function Form(props) {
     >
       <div>
         <InputHidden name="id" id="id" value={values.id} />
-        {values._currentTab === '1' && (
+        {values.currentTab === '1' && (
           <div>
             <div className="row">
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.lastname',
@@ -108,7 +108,7 @@ function Form(props) {
                   error={getErrorMessage('cli_lastname')}
                 />
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.firstname',
@@ -122,7 +122,7 @@ function Form(props) {
                   error={getErrorMessage('cli_firstname')}
                 />
               </div>
-              <div className="col-sm-7">
+              <div className="col-sm-w7">
                 <InputSelect
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.category',
@@ -135,7 +135,7 @@ function Form(props) {
                   options={clientCategoryAsOptions(props.client_categories)}
                 />
               </div>
-              <div className="col-sm-7">
+              <div className="col-sm-w7">
                 <InputSelect
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.type',
@@ -148,7 +148,7 @@ function Form(props) {
                   options={clientTypeAsOptions(props.client_types)}
                 />
               </div>
-              <div className="col-sm-4">
+              <div className="col-sm-w4">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.active',
@@ -163,7 +163,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-25">
+              <div className="col-sm-w25">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.address',
@@ -178,7 +178,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-25">
+              <div className="col-sm-w25">
                 <InputText
                   label=""
                   name="cli_address2"
@@ -190,7 +190,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-25">
+              <div className="col-sm-w25">
                 <InputText
                   label=""
                   name="cli_address3"
@@ -202,7 +202,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-7">
+              <div className="col-sm-w7">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.cp',
@@ -215,7 +215,7 @@ function Form(props) {
                   error={getErrorMessage('cli_cp')}
                 />
               </div>
-              <div className="col-sm-18">
+              <div className="col-sm-w18">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.town',
@@ -228,7 +228,7 @@ function Form(props) {
                   error={getErrorMessage('cli_town')}
                 />
               </div>
-              <div className="col-sm-11">
+              <div className="col-sm-w11">
                 <InputSelect
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.country',
@@ -243,7 +243,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-7">
+              <div className="col-sm-w7">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.receipt',
@@ -256,7 +256,7 @@ function Form(props) {
                   error={getErrorMessage('cli_receipt')}
                 />
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.certificate',
@@ -269,7 +269,7 @@ function Form(props) {
                   error={getErrorMessage('cli_certificat')}
                 />
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.sendNews',
@@ -282,7 +282,7 @@ function Form(props) {
                   error={getErrorMessage('cli_send_news')}
                 />
               </div>
-              <div className="col-sm-11">
+              <div className="col-sm-w11">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.displaySite',
@@ -297,7 +297,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-16">
+              <div className="col-sm-w16">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.email',
@@ -311,7 +311,7 @@ function Form(props) {
                   error={getErrorMessage('cli_email')}
                 />
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.phoneHomr',
@@ -324,7 +324,7 @@ function Form(props) {
                   error={getErrorMessage('cli_phone_home')}
                 />
               </div>
-              <div className="col-sm-6">
+              <div className="col-sm-w6">
                 <InputSelect
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.lang',
@@ -339,7 +339,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-16">
+              <div className="col-sm-w16">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.email2',
@@ -353,7 +353,7 @@ function Form(props) {
                   error={getErrorMessage('cli_email2')}
                 />
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm-w9">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.phoneGsm',
@@ -369,10 +369,10 @@ function Form(props) {
             </div>
           </div>
         )}
-        {values._currentTab === '2' && (
+        {values.currentTab === '2' && (
           <div>
             <div className="row">
-              <div className="col-sm-16">
+              <div className="col-sm-w16">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.emailRefused',
@@ -388,7 +388,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-36">
+              <div className="col-sm-w36">
                 <InputTextarea
                   label={props.intl.formatMessage({
                     id: 'app.features.client.form.desc',
@@ -405,12 +405,12 @@ function Form(props) {
             </div>
           </div>
         )}
-        {values._currentTab === '3' && (
+        {values.currentTab === '3' && (
           <div className="border border-secondary rounded overflow-x-hidden">
             <InlineSponsorships mode="client" id={values.id} />
           </div>
         )}
-        {values._currentTab === '4' && (
+        {values.currentTab === '4' && (
           <div className="border border-secondary rounded overflow-x-hidden">
             <InlineDonations mode="client" id={values.id} />
           </div>

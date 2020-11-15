@@ -40,22 +40,22 @@ export class InlineSponsors extends Component {
         ) : (
           <div className="inline-list">
             <div className="row row-title row-line">
-              <div className="col-12">
+              <div className="col-xs-w12">
                 <span className="pl-2">
                   <FormattedMessage id="app.features.sponsor.list.name" defaultMessage="Fullname" />
                 </span>
               </div>
-              <div className="col-12">
+              <div className="col-xs-w12">
                 <span>
                   <FormattedMessage id="app.features.sponsor.list.email" defaultMessage="Email" />
                 </span>
               </div>
-              <div className="col-4">
+              <div className="col-xs-w4">
                 <span>
                   <FormattedMessage id="app.features.sponsor.list.client" defaultMessage="Member" />
                 </span>
               </div>
-              <div className="col-4">
+              <div className="col-xs-w4">
                 <span>
                   <FormattedMessage
                     id="app.features.sponsor.list.displaySite"
@@ -63,7 +63,7 @@ export class InlineSponsors extends Component {
                   />
                 </span>
               </div>
-              <div className="col-4">
+              <div className="col-xs-w4">
                 <span>
                   <FormattedMessage
                     id="app.features.sponsor.list.news"
@@ -83,13 +83,13 @@ export class InlineSponsors extends Component {
                     )}
                     key={item.id}
                   >
-                    <div className="col-12">
+                    <div className="col-xs-w12">
                       <span className="pl-2">{item.spon_name}</span>
                     </div>
-                    <div className="col-12">
+                    <div className="col-xs-w12">
                       <span>{item.spon_email}</span>
                     </div>
-                    <div className="col-4">
+                    <div className="col-xs-w4">
                       <span>
                         {displayBool(
                           item.spon_donator,
@@ -98,7 +98,7 @@ export class InlineSponsors extends Component {
                         )}
                       </span>
                     </div>
-                    <div className="col-4">
+                    <div className="col-xs-w4">
                       <span>
                         {displayBool(
                           item.spon_site,
@@ -107,7 +107,7 @@ export class InlineSponsors extends Component {
                         )}
                       </span>
                     </div>
-                    <div className="col-4">
+                    <div className="col-xs-w4">
                       <span>
                         {displayBool(
                           item.spon_news,

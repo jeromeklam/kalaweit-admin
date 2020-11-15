@@ -14,27 +14,27 @@ export default class InlineHeader extends Component {
           this.props.oddEven % 2 !== 1 ? 'row-odd' : 'row-even',
         )}
       >
-        <div className="col-4 col-first">
+        <div className="col-xs-w4 col-first">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.type" defaultMessage="Type" />
           </span>
         </div>
-        <div className="col-4 text-right">
+        <div className="col-xs-w4 text-right">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.amount" defaultMessage="Amount" />
           </span>
         </div>
-        <div className="col-4">
+        <div className="col-xs-w4">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.from" defaultMessage="From" />
           </span>
         </div>
-        <div className="col-4">
+        <div className="col-xs-w4">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.to" defaultMessage="To" />
           </span>
         </div>
-        <div className="col-8">
+        <div className="col-xs-w8">
           {this.props.mode === 'cause' ? (
             <span>
               <FormattedMessage id="app.features.sponsorship.list.col.client" defaultMessage="Member" />
@@ -45,17 +45,17 @@ export default class InlineHeader extends Component {
             </span>
           )}
         </div>
-        <div className="col-4">
+        <div className="col-xs-w4">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.site" defaultMessage="Show on site" />
           </span>
         </div>
-        <div className="col-4">
+        <div className="col-xs-w4">
           <span>
             <FormattedMessage id="app.features.sponsorship.list.col.news" defaultMessage="News" />
           </span>
         </div>
-        <div className="col-4 text-right col-last">
+        <div className="col-xs-w4 text-right col-last">
           <div className="btn-group btn-group-xs" role="group" aria-label="...">
             <button
               type="button"

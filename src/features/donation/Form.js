@@ -153,7 +153,7 @@ function Form(props) {
       className="m-5"
       size="xl"
       height="lg"
-      tab={values._currentTab}
+      tab={values.currentTab}
       tabs={allTabs}
       onNavTab={handleNavTab}
       onSubmit={handleSubmit}
@@ -164,7 +164,7 @@ function Form(props) {
       <InputHidden name="id" id="id" value={values.id} />
       <div>
         <div className="row">
-          <div className="col-sm-14">
+          <div className="col-sm-w14">
             <ClientInputPicker
               label={intl.formatMessage({
                 id: 'app.features.donation.form.client',
@@ -178,7 +178,7 @@ function Form(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="col-sm-14">
+          <div className="col-sm-w14">
             <CauseInputPicker
               label={intl.formatMessage({
                 id: 'app.features.donation.form.cause',
@@ -192,7 +192,7 @@ function Form(props) {
               onChange={handleChange}
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-w8">
             <InputSelect
               label={intl.formatMessage({
                 id: 'app.features.donation.form.session',
@@ -210,10 +210,10 @@ function Form(props) {
         </div>
       </div>
       <hr />
-      {values._currentTab === '1' && (
+      {values.currentTab === '1' && (
         <div>
           <div className="row">
-            <div className="col-md-10">
+            <div className="col-md-w10">
               <InputDate
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.realTs',
@@ -228,7 +228,7 @@ function Form(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-md-10">
+            <div className="col-md-w10">
               <InputDate
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.endTs',
@@ -246,7 +246,7 @@ function Form(props) {
                 onLockOff={toggleLockOff}
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-w8">
               <InputCheckbox
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.sponsorship',
@@ -258,7 +258,7 @@ function Form(props) {
                 checked={values.sponsorship.id > 0}
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-w8">
               <InputCheckbox
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.origin',
@@ -273,7 +273,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-10">
+            <div className="col-md-w10">
               {values.inputMoney === values.dbMoney ? (
                 <InputMonetary
                   label={intl.formatMessage({
@@ -308,7 +308,7 @@ function Form(props) {
                 />
               )}
             </div>
-            <div className="col-sm-10">
+            <div className="col-sm-w10">
               <InputSelect
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.type',
@@ -326,7 +326,7 @@ function Form(props) {
                 error={getErrorMessage('ptyp_id')}
               />
             </div>
-            <div className="col-sm-8">
+            <div className="col-sm-w8">
               <InputCheckbox
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.displaySite',
@@ -338,7 +338,7 @@ function Form(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-w8">
               <InputSelect
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.status',
@@ -355,7 +355,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-sm-w36">
               <InputTextarea
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.comment',
@@ -370,11 +370,11 @@ function Form(props) {
           </div>
         </div>
       )}
-      {values._currentTab === '2' && (
+      {values.currentTab === '2' && (
         <div>
           <div className="row"></div>
           <div className="row">
-            <div className="col-sm-36">
+            <div className="col-sm-w36">
               <InputSponsors
                 label={intl.formatMessage({
                   id: 'app.features.donation.form.sponsors',
@@ -390,10 +390,10 @@ function Form(props) {
           </div>
         </div>
       )}
-      {values._currentTab === '3' && 
+      {values.currentTab === '3' && 
         <div>
           <div className="row">
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.certificate.form.fullname',
@@ -406,7 +406,7 @@ function Form(props) {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.certificate.form.email',
@@ -423,7 +423,7 @@ function Form(props) {
           {props.modify &&
             <div>
               <div className="row">
-                <div className="col-sm-12">
+                <div className="col-sm-w12">
                   <InputMonetary
                     label={props.intl.formatMessage({
                       id: 'app.features.certificate.form.output_mnt',
@@ -438,7 +438,7 @@ function Form(props) {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-w12">
                   <InputText
                     label={props.intl.formatMessage({
                       id: 'app.features.certificate.form.data1',
@@ -453,7 +453,7 @@ function Form(props) {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-sm-12">
+                <div className="col-sm-w12">
                   <InputDate
                     label={intl.formatMessage({
                       id: 'app.features.donation.form.printTs',

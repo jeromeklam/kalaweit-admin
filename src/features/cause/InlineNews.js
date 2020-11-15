@@ -71,7 +71,7 @@ export class InlineNews extends Component {
           ) : (
             <div className="inline-list">
               <div className="row row-title row-line">
-                <div className="col-30 col-last text-right">
+                <div className="col-xs-w30 col-last text-right">
                   <span>Langue courante : </span>
                   {this.props.lang.flags.map(oneLang => {
                     if (oneLang.id === this.state.lang_id) {
@@ -98,7 +98,7 @@ export class InlineNews extends Component {
                     return '';
                   })}
                 </div>
-                <div className="col-6 text-right">
+                <div className="col-xs-w6 text-right">
                   <div className="btn-group col-toolbar">
                     <button
                       className="btn btn-inline btn-primary text-light"
@@ -131,7 +131,7 @@ export class InlineNews extends Component {
                         )}
                         key={item.caum_id}
                       >
-                        <div className="col-36">
+                        <div className="col-xs-w36">
                           {item.versions &&
                             item.versions.map(version => {
                               if (version.lang.id === this.state.lang_id) {

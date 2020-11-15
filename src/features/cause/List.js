@@ -7,8 +7,11 @@ import * as actions from './redux/actions';
 import { normalizedObjectModeler } from 'jsonapi-front';
 import { ResponsiveList, ResponsiveQuickSearch } from 'react-bootstrap-front';
 import {
-  Filter as FilterIcon,
-  FilterFull as FilterFullIcon,  
+  FilterEmpty as FilterEmptyIcon,
+  FilterFull as FilterFullIcon,
+  FilterClear as FilterClearIcon,
+  FilterDefault as FilterDefaultIcon,
+  FilterClearDefault as FilterClearDefaultIcon, 
   SimpleCancel as CancelPanelIcon,
   SimpleValid as ValidPanelIcon,
   SortDown as SortDownIcon,
@@ -253,11 +256,7 @@ export class List extends Component {
         icon={<SearchIcon className="text-secondary" />}
       />
     );
-    const filterIcon = this.props.cause.filters.isEmpty() ? (
-      <FilterIcon color="white" />
-    ) : (
-      <FilterFullIcon color="white" />
-    );
+
     let inlineComponent = null;
     let id = null;
     if (this.state.news > 0) {
@@ -291,7 +290,6 @@ export class List extends Component {
           items={items}
           quickSearch={quickSearch}
           mainCol="cau_name"
-          filterIcon={filterIcon}
           cancelPanelIcon={<CancelPanelIcon />}
           validPanelIcon={<ValidPanelIcon />}
           sortDownIcon={<SortDownIcon  />}
@@ -305,6 +303,11 @@ export class List extends Component {
           globalActions={globalActions}
           sort={this.props.cause.sort}
           filters={this.props.cause.filters}
+          filterFullIcon={<FilterFullIcon color="white" />}
+          filterEmptyIcon={<FilterEmptyIcon color="white" />}
+          filterClearIcon={<FilterClearIcon color="white" />}
+          filterDefaultIcon={<FilterDefaultIcon color="white" />}
+          filterClearDefaultIcon={<FilterClearDefaultIcon color="white" />}
           onSearch={this.onQuickSearch}
           onSort={this.onUpdateSort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}
