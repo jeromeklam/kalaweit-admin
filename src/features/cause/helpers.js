@@ -4,7 +4,6 @@ import {
   GetOne as GetOneIcon,
   GetPhoto as GetPhotoIcon,
   DelOne as DelOneIcon,
-  FilterClear as FilterClearIcon,
   Sponsorship as SponsorshipIcon,
   Donation as CauseDonationIcon,
   News as NewsIcon,
@@ -23,17 +22,6 @@ export const sexSelect = [
 
 export const getGlobalActions = ({ props, onClearFilters, onCreate }) => {
   return [
-    {
-      name: 'clear',
-      label: props.intl.formatMessage({
-        id: 'app.list.button.clear',
-        defaultMessage: 'Clear filters',
-      }),
-      onClick: onClearFilters,
-      theme: 'secondary',
-      icon: <FilterClearIcon color="white" />,
-      role: 'OTHER',
-    },
     {
       name: 'create',
       label: props.intl.formatMessage({

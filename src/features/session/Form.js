@@ -17,7 +17,7 @@ function Form(props) {
   return (
     <ResponsiveModalOrForm
       className="m-5"
-      size="md"
+      size="sm"
       modal={true}
       title={props.intl.formatMessage({
         id: 'app.features.session.form.title',
@@ -29,7 +29,7 @@ function Form(props) {
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div className="row">
-        <div className="col-sm-24">
+        <div className="col-sm-w24">
           <InputText
             label={props.intl.formatMessage({
               id: 'app.features.session.form.name',
@@ -43,7 +43,7 @@ function Form(props) {
             error={getErrorMessage('sess_name')}
           />
         </div>
-        <div className="col-md-12">
+        <div className="col-md-w12">
           <InputSpin
             label={props.intl.formatMessage({
               id: 'app.features.session.form.exercice',
@@ -61,7 +61,7 @@ function Form(props) {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-18">
+        <div className="col-xs-w18">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.session.form.status',
@@ -77,7 +77,7 @@ function Form(props) {
             error={getErrorMessage('sess_status')}
           />
         </div>
-        <div className="col-sm-18">
+        <div className="col-xs-w18">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.session.form.type',

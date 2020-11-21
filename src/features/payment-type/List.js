@@ -130,7 +130,7 @@ export class List extends Component {
           inlineActions={inlineActions}
           globalActions={globalActions}
           sort={this.props.paymentType.sort}
-          filters={this.props.paymentType.filters}
+          filters={null}
           onSort={this.onUpdateSort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}
           onLoadMore={this.onLoadMore}

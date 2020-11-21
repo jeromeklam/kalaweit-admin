@@ -170,9 +170,9 @@ export class List extends Component {
           intl={intl}
           cols={cols}
           items={items}
-          quickSearch={quickSearch}
+          quickSearch={null}
           mainCol="caut_name"
-          filterIcon={filterIcon}
+          filterIcon={null}
           cancelPanelIcon={<CancelPanelIcon />}
           validPanelIcon={<ValidPanelIcon />}
           sortDownIcon={<SortDownIcon color="secondary" />}
@@ -181,9 +181,9 @@ export class List extends Component {
           inlineActions={inlineActions}
           globalActions={globalActions}
           sort={this.props.causeType.sort}
-          filters={this.props.causeType.filters}
+          filters={null}
           onSearch={this.onQuickSearch}
-          onClearFilters={this.onClearFilters}
+          onClearFilters={null}
           onSort={this.onUpdateSort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}
           onLoadMore={this.onLoadMore}

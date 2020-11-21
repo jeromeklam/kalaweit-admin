@@ -5,16 +5,13 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import * as actions from './redux/actions';
 import { normalizedObjectModeler } from 'jsonapi-front';
-import { ResponsiveList, ResponsiveQuickSearch } from 'react-bootstrap-front';
+import { ResponsiveList } from 'react-bootstrap-front';
 import {
-  Filter as FilterIcon,
-  FilterFull as FilterFullIcon,
   SimpleCancel as CancelPanelIcon,
   SimpleValid as ValidPanelIcon,
   SortDown as SortDownIcon,
   SortUp as SortUpIcon,
   Sort as SortNoneIcon,
-  Search as SearchIcon,
 } from '../icons';
 import { deleteError, deleteSuccess } from '../ui';
 import { getGlobalActions, getInlineActions, getCols } from './';
@@ -43,9 +40,7 @@ export class List extends Component {
     this.onDelOne = this.onDelOne.bind(this);
     this.onReload = this.onReload.bind(this);
     this.onLoadMore = this.onLoadMore.bind(this);
-    this.onQuickSearch = this.onQuickSearch.bind(this);
-    this.onClearFilters = this.onClearFilters.bind(this);
-    this.onSetFiltersAndSort = this.onSetFiltersAndSort.bind(this);
+    this.onSetSort = this.onSetSort.bind(this);
     this.onUpdateSort = this.onUpdateSort.bind(this);
     this.onClose = this.onClose.bind(this);
   }
@@ -88,18 +83,6 @@ export class List extends Component {
     this.props.actions.loadMore({}, true);
   }
 
-  onQuickSearch(quickSearch) {
-    this.props.actions.updateQuickSearch(quickSearch);
-    let timer = this.state.timer;
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      this.props.actions.loadMore({}, true);
-    }, 2000);
-    this.setState({ timer: timer });
-  }
-
   onUpdateSort(col, way, pos = 99) {
     this.props.actions.updateSort(col.col, way, pos);
     let timer = this.state.timer;
@@ -112,22 +95,8 @@ export class List extends Component {
     this.setState({ timer: timer });
   }
 
-  onSetFiltersAndSort(filters, sort) {
-    this.props.actions.setFilters(filters);
+  onSetSort(sort) {
     this.props.actions.setSort(sort);
-    let timer = this.state.timer;
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      this.props.actions.loadMore({}, true);
-    }, 2000);
-    this.setState({ timer: timer });
-  }
-
-  onClearFilters() {
-    this.props.actions.initFilters();
-    this.props.actions.initSort();
     let timer = this.state.timer;
     if (timer) {
       clearTimeout(timer);
@@ -156,26 +125,6 @@ export class List extends Component {
     const inlineActions = getInlineActions(this);
     const cols = getCols(this);
     // L'affichage, items, loading, loadMoreError
-    let search = '';
-    const crit = this.props.site.filters.findFirst('site_name');
-    if (crit) {
-      search = crit.getFilterCrit();
-    }
-    const quickSearch = (
-      <ResponsiveQuickSearch
-        name="quickSearch"
-        label={intl.formatMessage({ id: 'app.features.site.list.quicksearch', defaultMessage: 'Search by name' })}
-        quickSearch={search}
-        onSubmit={this.onQuickSearch}
-        onChange={this.onSearchChange}
-        icon={<SearchIcon className="text-secondary" />}
-      />
-    );
-    const filterIcon = this.props.site.filters.isEmpty() ? (
-      <FilterIcon color="white" />
-    ) : (
-      <FilterFullIcon color="white" />
-    );
     return (
       <div>
         <ResponsiveList
@@ -183,9 +132,8 @@ export class List extends Component {
           intl={intl}
           cols={cols}
           items={items || []}
-          quickSearch={quickSearch}
+          quickSearch={null}
           mainCol="site_name"
-          filterIcon={filterIcon}
           cancelPanelIcon={<CancelPanelIcon color="light" />}
           validPanelIcon={<ValidPanelIcon color="light" />}
           sortDownIcon={<SortDownIcon color="secondary" />}
@@ -194,11 +142,11 @@ export class List extends Component {
           inlineActions={inlineActions}
           globalActions={globalActions}
           sort={this.props.site.sort}
-          filters={this.props.site.filters}
-          onSearch={this.onQuickSearch}
-          onClearFilters={this.onClearFilters}
+          filters={null}
+          onSearch={null}
+          onClearFilters={null}
           onSort={this.onUpdateSort}
-          onSetFiltersAndSort={this.onSetFiltersAndSort}
+          onSetFiltersAndSort={this.onSetSort}
           onLoadMore={this.onLoadMore}
           loadMorePending={this.props.site.loadMorePending}
           loadMoreFinish={this.props.site.loadMoreFinish}

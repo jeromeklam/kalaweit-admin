@@ -15,7 +15,7 @@ function Form(props) {
   return (
     <ResponsiveModalOrForm
       className="m-5"
-      size="md"
+      size="sm"
       modal={true}
       title={props.intl.formatMessage({
         id: 'app.features.clientType.form.title',
@@ -27,7 +27,7 @@ function Form(props) {
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div className="row">
-        <div className="col-sm-36">
+        <div className="col-xs-w36">
           <InputText
             label={props.intl.formatMessage({
               id: 'app.features.clientType.form.name',

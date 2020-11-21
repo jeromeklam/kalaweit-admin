@@ -5,3 +5,5 @@ export { default as SimpleForm } from './SimpleForm';
 export { default as AskPassword } from './AskPassword';
 export { default as SettingsTab } from './SettingsTab';
 export { default as PasswordTab } from './PasswordTab';
+export { default as IdentificationAvatar } from './IdentificationAvatar';
+export { default as IdentificationTab } from './IdentificationTab';

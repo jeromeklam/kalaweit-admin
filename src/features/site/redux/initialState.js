@@ -1,4 +1,3 @@
-import { Filter } from 'react-bootstrap-front';
 import { getNewNormalizedObject } from 'jsonapi-front';
 
 const initialState = {
@@ -6,7 +5,7 @@ const initialState = {
   page_number: 1,
   page_size: 999999,
   tab: '1',
-  filters: new Filter(),
+  currentTab: null,
   sort: [{ col: 'site_name', way: 'up' }],
   properties: [
     'number_1',
@@ -21,8 +20,6 @@ const initialState = {
     'string_5',
     'string_6',
   ],
-  quickSearch: '',
-  mobileQuickSearch: false,
   loadMorePending: false,
   loadMoreFinish: false,
   loadMoreError: null,
@@ -34,8 +31,6 @@ const initialState = {
   createOneError: null,
   updateOnePending: false,
   updateOneError: null,
-  filterPending: false,
-  filterError: null,
   delOnePending: false,
   delOneError: null,
 };

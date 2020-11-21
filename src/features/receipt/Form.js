@@ -29,7 +29,7 @@ const Form = props => {
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div className="row">
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.number',
@@ -43,7 +43,7 @@ const Form = props => {
             error={getErrorMessage('rec_number')}
           />
         </div>
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputDate
             label={intl.formatMessage({
               id: 'app.features.receipt.form.rec_gen_ts',
@@ -59,7 +59,7 @@ const Form = props => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.fullname',
@@ -73,7 +73,7 @@ const Form = props => {
             error={getErrorMessage('rec_fullname')}
           />
         </div>
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.email',
@@ -89,7 +89,7 @@ const Form = props => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-36">
+        <div className="col-sm-w36">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.address1',
@@ -105,7 +105,7 @@ const Form = props => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-36">
+        <div className="col-sm-w36">
           <InputText
             label=""
             name="rec_address2"
@@ -118,7 +118,7 @@ const Form = props => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-36">
+        <div className="col-sm-w36">
           <InputText
             label=""
             name="rec_address3"
@@ -131,7 +131,7 @@ const Form = props => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-7">
+        <div className="col-sm-w7">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.postalCode',
@@ -144,7 +144,7 @@ const Form = props => {
             error={getErrorMessage('rec_cp')}
           />
         </div>
-        <div className="col-sm-18">
+        <div className="col-sm-w18">
           <InputText
             label={intl.formatMessage({
               id: 'app.features.receipt.form.town',
@@ -157,7 +157,7 @@ const Form = props => {
             error={getErrorMessage('rec_town')}
           />
         </div>
-        <div className="col-sm-11">
+        <div className="col-sm-w11">
           <InputSelect
             label={intl.formatMessage({
               id: 'app.features.receipt.form.country',

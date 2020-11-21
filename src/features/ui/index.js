@@ -32,3 +32,4 @@ export { default as InputImage } from './InputImage';
 export { default as InputCheckList } from './InputCheckList';
 export { default as DropZone } from './DropZone';
 export { default as InputPassword } from './InputPassword';
+export { default as Avatar } from './Avatar';

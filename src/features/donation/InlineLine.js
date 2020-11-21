@@ -45,32 +45,32 @@ export default class InlineLine extends Component {
           )}
           key={donation.id}
         >
-          <div className="col-4 col-first">
+          <div className="col-xs-w4 col-first">
             <span>{getPaymentTypeLabel(paymentTypes, donation.payment_type.id)}</span>
           </div>
-          <div className="col-4 text-right">
+          <div className="col-xs-w4 text-right">
             <span>{displayMonetary(donation.don_mnt)}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayDate(donation.don_ask_ts)}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayDate(donation.don_end_ts)}</span>
           </div>
-          <div className="col-8">
+          <div className="col-xs-w8">
             {this.props.mode === 'cause' ? (
               <span>{getFullName(donation.client)}</span>
             ) : (
               <span>{donation.cause.cau_name}</span>
             )}
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayBool(!(donation.sponsorship && donation.sponsorship.id > 0),<ColCheckIcon className="text-secondary"/>,'')}</span>
           </div>
-          <div className="col-4">
+          <div className="col-xs-w4">
             <span>{displayBool(donation.don_display_site,<ColCheckIcon className="text-secondary"/>,'')}</span>
           </div>
-          <div className="col-4 text-right col-last">
+          <div className="col-xs-w4 text-right col-last">
             {highlight && (
               <div className="btn-group btn-group-xs" role="group" aria-label="...">
                 <button

@@ -153,7 +153,7 @@ export class InlinePhotos extends Component {
                     <div className="card mt-2">
                       <div className="card-header">
                         <div className="row">
-                          <div className="col-12">
+                          <div className="col-xs-w12">
                             <span className="">
                               <small>
                                 <FormattedMessage id="app.features.picture.list.main" defaultMessage="Main" />
@@ -171,7 +171,7 @@ export class InlinePhotos extends Component {
                               />
                             )}
                           </div>
-                          <div className="col-24 text-right">
+                          <div className="col-xs-w24 text-right">
                             <div className="btn-group btn-group-sm" role="group" aria-label="...">
                               <button type="button" className="btn btn-inline btn-secondary text-light">
                                 <ViewIcon
@@ -206,7 +206,7 @@ export class InlinePhotos extends Component {
                 <div className="card mt-2">
                   <div className="card-header">
                     <div className="row">
-                      <div className="col-36">
+                      <div className="col-xs-w36">
                         <span className="">
                           <FormattedMessage id="app.features.picture.list.add" defaultMessage="Add one picture" />
                         </span>

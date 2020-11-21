@@ -7,8 +7,9 @@ import * as actions from './redux/actions';
 import { normalizedObjectModeler } from 'jsonapi-front';
 import { ResponsiveList, ResponsiveQuickSearch } from 'react-bootstrap-front';
 import {
-  Filter as FilterIcon,
+  FilterEmpty as FilterEmptyIcon,
   FilterFull as FilterFullIcon,
+  FilterClear as FilterClearIcon,
   SimpleCancel as CancelPanelIcon,
   SimpleValid as ValidPanelIcon,
   SortDown as SortDownIcon,
@@ -149,11 +150,6 @@ export class List extends Component {
         icon={<SearchIcon className="text-secondary" />}
       />
     );
-    const filterIcon = this.props.receipt.filters.isEmpty() ? (
-      <FilterIcon color="white" />
-    ) : (
-      <FilterFullIcon color="white" />
-    );
     return (
       <div>
         <ResponsiveList
@@ -162,7 +158,6 @@ export class List extends Component {
           items={items}
           quickSearch={quickSearch}
           mainCol="rec_fullname,rec_email"
-          filterIcon={filterIcon}
           cancelPanelIcon={<CancelPanelIcon />}
           validPanelIcon={<ValidPanelIcon />}
           sortDownIcon={<SortDownIcon color="secondary" />}
@@ -172,6 +167,9 @@ export class List extends Component {
           globalActions={globalActions}
           sort={this.props.receipt.sort}
           filters={this.props.receipt.filters}
+          filterFullIcon={<FilterFullIcon color="white" />}
+          filterEmptyIcon={<FilterEmptyIcon color="white" />}
+          filterClearIcon={<FilterClearIcon color="white" />}
           onSearch={this.onQuickSearch}
           onClearFilters={this.onClearFilters}
           onSort={this.onUpdateSort}

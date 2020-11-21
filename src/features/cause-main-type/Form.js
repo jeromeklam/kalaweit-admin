@@ -17,7 +17,7 @@ function Form(props) {
   return (
     <ResponsiveModalOrForm
       className="m-5"
-      size="md"
+      size="sm"
       modal={true}
       title={props.intl.formatMessage({
         id: 'app.features.causeMainType.form.title',
@@ -30,7 +30,7 @@ function Form(props) {
       <div className="card-body">
         <InputHidden name="id" id="id" value={values.id} />
         <div className="row>">
-          <div className="col-md-36">
+          <div className="col-xs-w36">
             <InputText
               label={props.intl.formatMessage({
                 id: 'app.features.causeMainType.form.name',
@@ -45,7 +45,7 @@ function Form(props) {
           </div>
         </div>
         <div className="row>">
-          <div className="col-md-36">
+          <div className="col-md-w36">
             <InputSelect
               label={props.intl.formatMessage({
                 id: 'app.features.causeMainType.form.family',

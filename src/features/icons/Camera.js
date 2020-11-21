@@ -1,13 +1,7 @@
-import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import { mdiCamera as myIcon } from '@mdi/js';
+import { Icon } from './';
 
-export default function Camera() {
-  return (
-    <div className="icons-camera">
-      Component content: icons/Camera
-    </div>
-  );
+export default function Camera(props) {
+  return <Icon path={myIcon} {...props} />;
 };
-
-Camera.propTypes = {};
-Camera.defaultProps = {};

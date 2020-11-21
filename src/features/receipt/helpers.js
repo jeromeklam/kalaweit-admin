@@ -3,20 +3,11 @@ import {
   AddOne as AddOneIcon,
   GetOne as GetOneIcon,
   DelOne as DelOneIcon,
-  FilterClear as FilterClearIcon,
 } from '../icons';
 import { getReceiptModes, getReceiptSendMethods } from './';
 
 export const getGlobalActions = ({ onClearFilters, onCreate}) => {
   return [
-    {
-      name: 'clear',
-      label: 'Effacer',
-      onClick: onClearFilters,
-      theme: 'secondary',
-      icon: <FilterClearIcon color="white" />,
-      role: 'OTHER',
-    },
     {
       name: 'create',
       label: 'Ajouter',

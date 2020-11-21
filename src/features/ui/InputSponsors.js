@@ -15,7 +15,7 @@ class InputSponsorLine extends Component {
     const { value, onChange, onDelete } = this.props;
     return (
       <div className="row">
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputText
             name="name"
             value={value.name}
@@ -25,7 +25,7 @@ class InputSponsorLine extends Component {
             onChange={onChange}
           />
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-w12">
           <InputText
             name="email"
             value={value.email}
@@ -35,7 +35,7 @@ class InputSponsorLine extends Component {
             onChange={onChange}
           />
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-w4">
           <InputCheckbox
             name="site"
             checked={value.site}
@@ -45,7 +45,7 @@ class InputSponsorLine extends Component {
             onChange={onChange}
           />
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-w4">
           <InputCheckbox
             name="news"
             checked={value.news}
@@ -55,7 +55,7 @@ class InputSponsorLine extends Component {
             onChange={onChange}
           />
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-w4">
           <button className="btn bg-light btn-outline-secondary">
             <DelOneIcon className="text-warning" onClick={onDelete}/>
           </button>
@@ -130,22 +130,22 @@ class InputSponsors extends Component {
     return (
       <div className="form-group">
         <div className="row">
-          <div className="col-sm-12">
+          <div className="col-sm-w12">
             <span>
               <FormattedMessage id="app.features.sponsors.list.col.name" defaultMessage="Fullname" />
             </span>
           </div>
-          <div className="col-sm-12">
+          <div className="col-sm-w12">
             <span>
               <FormattedMessage id="app.features.sponsors.list.col.email" defaultMessage="Email" />
             </span>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-w4">
             <span>
               <FormattedMessage id="app.features.sponsors.list.col.displaySite" defaultMessage="Show on site" />
             </span>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-w4">
             <span>
               <FormattedMessage id="app.features.sponsors.list.col.sendNews" defaultMessage="Send news" />
             </span>

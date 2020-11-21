@@ -26,6 +26,8 @@
 	"app.features.auth.form.tabIdentity": "Identity",
 	"app.features.auth.form.tabPassword": "Change password",
 	"app.features.auth.form.tabSettings": "Settings",
+	"app.features.auth.user.avatar.update": "Change",
+	"app.features.auth.user.avatar.remove": "Remove",
 	"app.features.auth.login.askPassword": "Send password reset email",
 	"app.features.auth.login.back": "Back",
 	"app.features.auth.login.connexion": "Sign in",

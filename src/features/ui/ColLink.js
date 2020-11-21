@@ -18,7 +18,7 @@ export default class ColLink extends Component {
   render() {
     return (
       <div
-        className={classnames('col-36 col-link text-center mt-3 mb-3', this.props.className)}
+        className={classnames('col-xs-w36 col-link text-center mt-3 mb-3', this.props.className)}
         onClick={this.props.onClick}
       >
         <span>{this.props.label}</span>

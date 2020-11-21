@@ -157,7 +157,7 @@ export class List extends Component {
           inlineActions={inlineActions}
           globalActions={globalActions}
           sort={this.props.data.sort}
-          filters={this.props.data.filters}
+          filters={null}
           onSearch={this.onQuickSearch}
           onSort={this.onUpdateSort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}

@@ -154,7 +154,7 @@ export class ModifyOrCreateMedia extends Component {
           >
             <InputHidden name="id" id="id" value={item.id} />
             <div classname="row">
-              <div classname="col-36">
+              <div classname="col-xs-w36">
                 <InputText
                   name="caum_title"
                   label="Titre général"
@@ -168,7 +168,7 @@ export class ModifyOrCreateMedia extends Component {
                   return (
                     <div>
                       <div className="row">
-                        <div className="col-36">
+                        <div className="col-xs-w36">
                           <InputText
                             Text
                             name="caml_subject"
@@ -179,7 +179,7 @@ export class ModifyOrCreateMedia extends Component {
                         </div>
                       </div>
                       <div className="row">
-                        <div className="col-36">
+                        <div className="col-xs-w36">
                           <InputTextarea
                             Text
                             name="caml_text"

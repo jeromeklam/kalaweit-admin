@@ -3,19 +3,10 @@ import {
   AddOne as AddOneIcon,
   GetOne as GetOneIcon,
   DelOne as DelOneIcon,
-  FilterClear as FilterClearIcon,
 } from '../icons';
 
-export const getGlobalActions = ({ onClearFilters, onCreate, props }) => {
+export const getGlobalActions = ({ onCreate, props }) => {
   return [
-    {
-      name: 'clear',
-      label: props.intl.formatMessage({ id: 'app.list.button.clear', defaultMessage: 'Clear' }),
-      onClick: onClearFilters,
-      theme: 'secondary',
-      icon: <FilterClearIcon color="white" />,
-      role: 'OTHER',
-    },
     {
       name: 'create',
       label: props.intl.formatMessage({ id: 'app.list.button.add', defaultMessage: 'Add new' }),

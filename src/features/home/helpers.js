@@ -18,7 +18,9 @@ import {
 
 export const appMenu = (types) => {
   let causes = [];
+  console.log("FK",types);
   if (types) {
+    
     types.forEach((elem) => {
       causes.push({
         icon: '',

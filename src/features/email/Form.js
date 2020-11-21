@@ -39,20 +39,20 @@ function Form(props) {
     <ResponsiveModalOrForm
       title={props.intl.formatMessage({
         id: 'app.features.email.form.title',
-        defaultMessage: 'Email model',
+        defaultMessage: 'Notification',
       })}
-      size="lg"
+      size="md"
       onSubmit={handleSubmit}
       onCancel={handleCancel}
       onNavTab={handleNavTab}
       onClose={props.onClose}
-      tab={values._currentTab}
+      tab={values.currentTab}
       tabs={tabs}
       modal={true}
     >
       <InputHidden name="id" id="id" value={values.id} />
       <div className="row">
-        <div className="col-sm-26">
+        <div className="col-sm-w26">
           <InputText
             label={props.intl.formatMessage({
               id: 'app.features.email.form.subject',
@@ -66,7 +66,7 @@ function Form(props) {
             error={getErrorMessage('email_subject')}
           />
         </div>
-        <div className="col-sm-10">
+        <div className="col-sm-w10">
           <InputSelect
             label={props.intl.formatMessage({
               id: 'app.features.email.form.lang',
@@ -82,10 +82,10 @@ function Form(props) {
         </div>
       </div>
       <hr />
-      {values._currentTab === '1' && (
+      {values.currentTab === '1' && (
         <div>
           <div className="row">
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.email.form.replyTo',
@@ -98,7 +98,7 @@ function Form(props) {
                 error={getErrorMessage('email_reply_to')}
               />
             </div>
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputSelect
                 label={props.intl.formatMessage({
                   id: 'app.features.email.form.code',
@@ -115,7 +115,7 @@ function Form(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.email.form.fromEmail',
@@ -128,7 +128,7 @@ function Form(props) {
                 error={getErrorMessage('email_from')}
               />
             </div>
-            <div className="col-sm-18">
+            <div className="col-sm-w18">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.email.form.fromName',
@@ -144,10 +144,9 @@ function Form(props) {
           </div>
         </div>
       )}
-      <hr />
-      {values._currentTab === '2' && (
+      {values.currentTab === '2' && (
         <div className="row">
-          <div className="col-sm-36">
+          <div className="col-sm-w36">
             <InputTextarea
               label={props.intl.formatMessage({
                 id: 'app.features.email.form.body',

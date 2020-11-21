@@ -3,7 +3,6 @@ import {
   AddOne as AddOneIcon, 
   GetOne as GetOneIcon, 
   DelOne as DelOneIcon,
-  FilterClear as FilterClearIcon,
 } from '../icons';
 
 export const emailCodes = [
@@ -12,14 +11,6 @@ export const emailCodes = [
 
 export const getGlobalActions = ({ props, onClearFilters, onCreate }) => {
   return [
-    {
-      name: 'clear',
-      label: props.intl.formatMessage({ id: 'app.list.button.clear', defaultMessage: 'Clear filters' }),
-      onClick: onClearFilters,
-      theme: 'secondary',
-      icon: <FilterClearIcon color="white" />,
-      role: 'OTHER',
-    },
     {
       name: 'create',
       label: props.intl.formatMessage({ id: 'app.list.button.add', defaultMessage: 'Add' }),

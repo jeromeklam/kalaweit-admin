@@ -71,6 +71,7 @@ export class Modify extends Component {
                 config={this.props.config.items}
                 site_types={this.props.siteType.items} 
                 properties={this.props.site.properties}
+                tab={this.props.site.tab}
                 errors={this.props.site.updateOneError}
                 onSubmit={this.onSubmit} 
                 onCancel={this.onCancel} 

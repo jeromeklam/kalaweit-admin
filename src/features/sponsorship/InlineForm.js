@@ -26,8 +26,8 @@ export default function InlineForm(props) {
     <div className="card m-2">
       <div className="card-header">
         <div className="row">
-          <div className="col-24 text-left">Don / parrainage régulier</div>
-          <div className="col-12 text-right">
+          <div className="col-xs-w24 text-left">Don / parrainage régulier</div>
+          <div className="col-xs-w12 text-right">
             <div className="btn-group btn-group-sm" role="group" aria-label="...">
               <div className="btn-group" role="group" aria-label="First group">
                 <div className="ml-2">
@@ -51,11 +51,11 @@ export default function InlineForm(props) {
         <form>
           <InputHidden name="id" id="id" value={values.id} />
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-w4">
               {props.mode === 'client' && <InlineLabel label="Cause" />}
               {props.mode === 'cause' && <InlineLabel label="Membre" />}
             </div>
-            <div className="col-sm-20">
+            <div className="col-sm-w20">
               {props.mode === 'client' && (
                 <CauseInputPicker
                   label=""
@@ -87,7 +87,7 @@ export default function InlineForm(props) {
                 />
               )}
             </div>
-            <div className="col-sm-10">
+            <div className="col-sm-w10">
               <InlineInputCheckbox
                 label="Envoyer les news"
                 id="spo_send_news"
@@ -103,10 +103,10 @@ export default function InlineForm(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-w4">
               <InlineLabel label="Du" />
             </div>
-            <div className="col-sm-8">
+            <div className="col-sm-w8">
               <InputDate
                 label=""
                 name="spo_from"
@@ -120,10 +120,10 @@ export default function InlineForm(props) {
                 error={getErrorMessage('spo_from')}
               />
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-w4">
               <InlineLabel label="Au" />
             </div>
-            <div className="col-sm-8">
+            <div className="col-sm-w8">
               <InputDate
                 label=""
                 name="spo_to"
@@ -137,7 +137,7 @@ export default function InlineForm(props) {
                 error={getErrorMessage('spo_to')}
               />
             </div>
-            <div className="col-sm-10">
+            <div className="col-sm-w10">
               <InlineInputCheckbox
                 label="Afficher sur le site"
                 id="spo_display_site"
@@ -153,10 +153,10 @@ export default function InlineForm(props) {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-w4">
               <InlineLabel label="Montant" />
             </div>
-            <div className="col-sm-8">
+            <div className="col-sm-w8">
               <InlineInputText
                 label=""
                 id="spo_mnt"
@@ -171,10 +171,10 @@ export default function InlineForm(props) {
                 error={getErrorMessage('spo_mnt')}
               />
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-w4">
               <InlineLabel label="Type" />
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-w6">
               <InlineInputSelect
                 label=""
                 name="payment_type.id"
@@ -189,7 +189,7 @@ export default function InlineForm(props) {
                 error={getErrorMessage('ptyp_id')}
               />
             </div>
-            <div className="col-sm-2">
+            <div className="col-sm-w2">
               <InlineInputText
                 label=""
                 id="spo_freq_when"
@@ -204,7 +204,7 @@ export default function InlineForm(props) {
                 error={getErrorMessage('spo_freq_when')}
               />
             </div>
-            <div className="col-sm-12">
+            <div className="col-sm-w12">
               <InlineInputText
                 label=""
                 id="spo_freq_detail"

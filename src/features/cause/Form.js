@@ -90,7 +90,7 @@ function Form(props) {
     <ResponsiveModalOrForm
       title={values.cau_name ? values.cau_name : ''}
       className="m-5"
-      tab={values._currentTab}
+      tab={values.currentTab}
       tabs={!props.modify ? tabs : tabs.concat(modifTabs)}
       size="xl"
       onSubmit={handleSubmit}
@@ -100,10 +100,10 @@ function Form(props) {
       modal={true}
     >
       <InputHidden name="id" id="id" value={values.id} />
-      {values._currentTab === '1' && (
+      {values.currentTab === '1' && (
         <div>
           <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-w7">
               <InputSelect
                 label={props.intl.formatMessage({
                   id: 'app.features.cause.form.causeType',
@@ -117,7 +117,7 @@ function Form(props) {
                 options={causeTypeAsOptions(props.cause_types)}
               />
             </div>
-            <div className="col-md-7">
+            <div className="col-md-w7">
               <InputText
                 label={props.intl.formatMessage({
                   id: 'app.features.cause.form.name',
@@ -133,7 +133,7 @@ function Form(props) {
               />
             </div>
             {values.cause_type && values.cause_type.caut_family === 'ANIMAL' && (
-              <div className="col-md-10">
+              <div className="col-md-w10">
                 <InputSelect
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.subspecies',
@@ -148,7 +148,7 @@ function Form(props) {
                 />
               </div>
             )}
-            <div className="col-md-12">
+            <div className="col-md-w12">
               <SiteInputPicker
                 label={props.intl.formatMessage({
                   id: 'app.features.cause.form.site',
@@ -165,7 +165,7 @@ function Form(props) {
 
           <div>
             <div className="row">
-              <div className="col-6">
+              <div className="col-xs-w6">
                 {values.cause_type && values.cause_type.caut_family === 'ANIMAL' && (
                   <InputSelect
                     label={props.intl.formatMessage({
@@ -184,7 +184,7 @@ function Form(props) {
                   />
                 )}
               </div>
-              <div className="col-md-6">
+              <div className="col-md-w6">
                 {values.cause_type && values.cause_type.caut_family === 'ANIMAL' && (
                   <InputSpin
                     label={props.intl.formatMessage({
@@ -201,8 +201,8 @@ function Form(props) {
                   />
                 )}
               </div>
-              <div className="col-md-2"></div>
-              <div className="col-7">
+              <div className="col-md-w2"></div>
+              <div className="col-xs-w7">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.public',
@@ -214,7 +214,7 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-7">
+              <div className="col-xs-w7">
                 <InputCheckbox
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.available',
@@ -226,8 +226,8 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-1"></div>
-              <div className="col-md-7">
+              <div className="col-md-w1"></div>
+              <div className="col-md-w7">
                 <InputMonetary
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.mnt',
@@ -244,7 +244,7 @@ function Form(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-9">
+              <div className="col-md-w9">
                 <InputDate
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.from',
@@ -257,7 +257,7 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-9">
+              <div className="col-md-w9">
                 <InputDate
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.to',
@@ -270,7 +270,7 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-w6">
                 {values.cau_end && (
                   <InputData
                     key="cau_string_3"
@@ -283,8 +283,8 @@ function Form(props) {
                   />
                 )}
               </div>
-              <div className="col-md-5"></div>
-              <div className="col-md-7">
+              <div className="col-md-w5"></div>
+              <div className="col-md-w7">
                 <InputMonetary
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.left',
@@ -303,7 +303,7 @@ function Form(props) {
           </div>
           {values.cause_type && values.cause_type.caut_family === 'ANIMAL' && (
             <div className="row">
-              <div className="col-18">
+              <div className="col-xs-w18">
                 <CauseInputPicker
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.parent1',
@@ -316,7 +316,7 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-18">
+              <div className="col-xs-w18">
                 <CauseInputPicker
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.parent2',
@@ -333,7 +333,7 @@ function Form(props) {
           )}
           {values.cause_type.caut_certificat && (
             <div className="row">
-              <div className="col-sm-12">
+              <div className="col-sm-w12">
                 <InputMonetary
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.unitBase',
@@ -348,7 +348,7 @@ function Form(props) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-sm-12">
+              <div className="col-sm-w12">
                 <InputText
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.unitUnit',
@@ -363,7 +363,7 @@ function Form(props) {
                   error={getErrorMessage('cau_unit_unit')}
                 />
               </div>
-              <div className="col-sm-12">
+              <div className="col-sm-w12">
                 <InputMonetary
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.unitMnt',
@@ -382,11 +382,11 @@ function Form(props) {
           )}
         </div>
       )}
-      {values._currentTab === '2' && (
+      {values.currentTab === '2' && (
         <div>
           {values.cause_type && values.cause_type.caut_family === 'ANIMAL' && (
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-w12">
                 <ClientInputPicker
                   label={props.intl.formatMessage({
                     id: 'app.features.cause.form.proprietary',
@@ -402,7 +402,7 @@ function Form(props) {
             </div>
           )}
           <div className="row">
-            <div className="col-md-36">
+            <div className="col-md-w36">
               <InputTextarea
                 label={props.intl.formatMessage({
                   id: 'app.features.cause.form.desc',
@@ -417,22 +417,22 @@ function Form(props) {
           </div>
         </div>
       )}
-      {values._currentTab === '3' && (
+      {values.currentTab === '3' && (
         <div className="border border-secondary rounded overflow-x-hidden">
           <InlineSponsorships mode="cause" id={values.id} />
         </div>
       )}
-      {values._currentTab === '4' && (
+      {values.currentTab === '4' && (
         <div className="border border-secondary rounded overflow-x-hidden">
           <InlineDonations mode="cause" id={values.id} />
         </div>
       )}
-      {values._currentTab === '5' && (
+      {values.currentTab === '5' && (
         <div className="border border-secondary rounded overflow-x-hidden">
           <InlinePhotos cauId={values.id} />
         </div>
       )}
-      {values._currentTab === '6' && (
+      {values.currentTab === '6' && (
         <div className="border border-secondary rounded overflow-x-hidden">
           <InlineSponsors cauId={values.id} />
         </div>
