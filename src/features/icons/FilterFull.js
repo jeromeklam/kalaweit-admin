@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
+import { mdiFilterMenu as myIcon } from '@mdi/js';
 import { Icon } from './';
-import {
-  mdiFilter
-} from '@mdi/js';
 
 export default class FilterFull extends Component {
-  static propTypes = {
-
-  };
+  static propTypes = {};
 
   render() {
-    return (
-      <Icon 
-        path={mdiFilter}
-        size={1}
-        {...this.props}
-      />
-    );
+    return <Icon path={myIcon} {...this.props} />;
   }
 }

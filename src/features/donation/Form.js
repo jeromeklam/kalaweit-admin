@@ -13,7 +13,7 @@ import { paymentTypeAsOptions } from '../payment-type/functions.js';
 import { InputPicker as ClientInputPicker } from '../client';
 import { InputPicker as CauseInputPicker } from '../cause';
 import { sessionAsOptions } from '../session/functions.js';
-import { statusValues, calculateDonationEndTs } from './';
+import { getStatus, calculateDonationEndTs } from './';
 
 const afterChange = (name, item) => {
   switch (name) {
@@ -349,7 +349,7 @@ function Form(props) {
                 labelTop={true}
                 value={values.don_status}
                 onChange={handleChange}
-                options={statusValues}
+                options={() => getStatus(intl)}
                 error={getErrorMessage('don_status')}
               />
             </div>

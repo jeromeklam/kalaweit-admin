@@ -11,12 +11,15 @@ import {
   View as ViewOneIcon,
 } from '../icons';
 
-export const statusValues = [
-  { value: 'WAIT', label: 'En attente' },
-  { value: 'OK', label: 'Payé' },
-  { value: 'NOK', label: 'Impayé' },
-  //{ value: 'NEXT', label: 'A venir' },
-];
+export const getStatus = ( intl ) => {
+  let statusValues = [
+    { value: 'WAIT', label: intl.formatMessage({ id: 'app.features.donation.status.wait', defaultMessage: 'Waiting' }) },
+    { value: 'OK', label: intl.formatMessage({ id: 'app.features.donation.status.paid', defaultMessage: 'Paid' }) },
+    { value: 'NOK', label: intl.formatMessage({ id: 'app.features.donation.status.unpaid', defaultMessage: 'Unpaid' }) },
+    //{ value: 'NEXT', label: 'A venir' },
+  ];
+  return statusValues;
+}
 
 const missionDisplay = (item) => {
   let result = item.cause.cau_name;
@@ -127,7 +130,7 @@ export const getCols = ({ props }) => {
         defaultMessage: 'Firstname',
       }),
       col: 'client.cli_firstname',
-      size: '5',
+      size: '4',
       mob_size: '',
       sortable: true,
       filterable: { type: 'text' },
@@ -171,7 +174,7 @@ export const getCols = ({ props }) => {
       mob_size: '',
       sortable: true,
       type: 'switch',
-      values: statusValues,
+      value: getStatus(props.intl),
       filterable: { type: 'text' },
     },
     {

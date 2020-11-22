@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { ResponsiveForm, ResponsiveModal } from 'react-bootstrap-front';
 
-export default class ResponsiveModalOrForm extends Component {
+class ResponsiveModalOrForm extends Component {
   static propTypes = {};
 
   render() {
     if (this.props.modal) {
       const buttons = [
-        { name: 'Enregistrer', function: this.props.onSubmit, theme: 'primary', icon: 'valid' },
-        { name: 'Annuler', function: this.props.onClose, theme: 'secondary', icon: 'close' },
+        {
+          name: this.props.intl.formatMessage({
+            id: 'app.features.ui.responsiveModalOrForm.save',
+            defaultMessage: 'Save',
+          }),
+          function: this.props.onSubmit,
+          theme: 'primary',
+          icon: 'valid',
+        },
+        {
+          name: this.props.intl.formatMessage({
+            id: 'app.features.ui.responsiveModalOrForm.cancel',
+          }),
+          defaultMessage: 'Cancel',
+          function: this.props.onClose,
+          theme: 'secondary',
+          icon: 'close',
+        },
       ];
       return (
         <ResponsiveModal
@@ -22,3 +39,5 @@ export default class ResponsiveModalOrForm extends Component {
     return <ResponsiveForm {...this.props} />;
   }
 }
+
+export default injectIntl(ResponsiveModalOrForm);

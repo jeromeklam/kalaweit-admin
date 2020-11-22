@@ -76,6 +76,33 @@ export const getCols = ({ props }) => {
       type: 'bool',
       values: validSelect,
       filterable: { type: 'bool' },
+    },
+    {
+      name: 'ptyp_from',
+      label: props.intl.formatMessage({
+        id: 'app.features.paymentType.list.col.from',
+        defaultMessage: 'From',
+      }),
+      col: 'ptyp_from',
+      size: '8',
+      mob_size: '',
+      title: true,
+      sortable: true,
+      type: 'date',
+      values: validSelect,
+    },
+    {
+      name: 'ptyp_to',
+      label: props.intl.formatMessage({
+        id: 'app.features.paymentType.list.col.to',
+        defaultMessage: 'To',
+      }),
+      col: 'ptyp_to',
+      size: '8',
+      mob_size: '',
+      title: true,
+      sortable: true,
+      type: 'date',
       last: true,
     },
   ];
