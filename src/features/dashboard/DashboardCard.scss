@@ -1,67 +1,50 @@
 @import '../../styles/mixins';
 
-@import '../../styles/mixins';
-
 .dashboard-stat-card {
   height: 100%;
-  padding-top: 20px;
+  font-size: 0.9rem;
+
   .card {
-    background-color: theme-color('secondary');
-    border: 0;
+    background-color: transparent;
     margin-bottom: 30px;
     /*margin-top: 30px;*/
     border-radius: 6px;
     color: #333;
-    background: #fff;
     width: 100%;
     height: 100%;
+    border-color: theme-color('secondary');
+    border: 1px solid;
   }
   .card-category {
     margin-bottom: 0;
-    color: theme-color('secondary-light');
   }
   .card-body {
-    background-color: theme-color('secondary');
-    color: theme-color('light');
-    overflow: hidden;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
+    background-color: theme-color('secondary-light');
+    color: theme-color('secondary');
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0px;
   }
   .card-title {
     margin-bottom: 0px;
   }
   .card-icon,
   .card-text {
-    border-radius: 3px;
-    background-color: theme-color('primary');
-    color: #fff;
-    padding: 15px;
-    margin-top: -30px;
-    float: left;
+    padding: 5px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
   }
   .card-icon-btn:hover {
     color: #fff;
-    background-color: darken(theme-color('primary'), 10%);
+    background-color: lighten(theme-color('secondary'), 10%);
   }
   .card-header {
     background-color: theme-color('secondary');
+    color: theme-color('white');
     padding-bottom: 0px;
     margin-bottom: 0px;
-
-    .card-category {
-      font-weight: bold;
-      padding-bottom: px;
-    }
-
-    .inline-list {
-      overflow: hidden;
-
-      .row-title {
-        background-color: theme-color('secondary');
-        color: theme-color('light');
-      }
-    }
+    height: 50px;
   }
   .card-footer .nav-link {
     padding: 0px;
@@ -71,7 +54,12 @@
     padding: 0px;
   }
   a {
-    color: theme-color('secondary');
+    color: $header-background-color;
+  }
+  .card-draggable-area {
+    width: 80%;
+    margin: 0 auto;
+    height: 40px;
   }
 }
 

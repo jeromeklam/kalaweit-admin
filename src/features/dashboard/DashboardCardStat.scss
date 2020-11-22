@@ -1,0 +1,6 @@
+@import '../../styles/mixins';
+
+.dashboard-dashboard-card-stat {
+  background-color: theme-color('secondary-light');
+  color: theme-color('secondary');
+}

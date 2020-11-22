@@ -1,10 +1,10 @@
-/* This is the Root component mainly initializes Redux and React Router. */
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { hot, setConfig } from 'react-hot-loader';
+
+import { default as PrivateRoute } from './common/PrivateRoute';
 import store from './common/store';
 import routeConfig from './common/routeConfig';
 import history from './common/history';
@@ -17,7 +17,7 @@ function renderRouteConfigV3(routes, contextPath) {
   // Resolve route config object in React Router v3.
   const children = []; // children component list
 
-  const renderRoute = (item, routeContextPath) => {
+  const renderRoute = (item, routeContextPath, auth) => {
     let newContextPath;
     if (/^\//.test(item.path)) {
       newContextPath = item.path;
@@ -35,11 +35,22 @@ function renderRouteConfigV3(routes, contextPath) {
         />,
       );
     } else if (item.component) {
-      children.push(
-        <Route key={newContextPath} component={item.component} path={newContextPath} exact />,
-      );
+      if ((item.auth && item.auth === 'PRIVATE') || (auth && auth === 'PRIVATE')) {
+        children.push(
+          <PrivateRoute
+            key={newContextPath}
+            component={item.component}
+            path={newContextPath}
+            exact
+          />,
+        );
+      } else {
+        children.push(
+          <Route key={newContextPath} component={item.component} path={newContextPath} exact />,
+        );
+      }
     } else if (item.childRoutes) {
-      item.childRoutes.forEach(r => renderRoute(r, newContextPath));
+      item.childRoutes.forEach(r => renderRoute(r, newContextPath, auth));
     }
   };
 

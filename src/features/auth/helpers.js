@@ -1,49 +1,40 @@
 export const defaultConfig = {
-  "layout": {
-    "savemenu": false,
-    "menuposition" : true
-  }
+  layout: {
+    savemenu: false,
+    menuposition: true,
+    listdetails: 'right',
+  },
 };
 
 export const schema = {
-    "title": "Configuration",
-    "description": "Configuration",
-    "type": "object",
-    "properties": {
-      "layout": {
-        "title": "Affichage",
-        "description": "Options d'affichage",
-        "type": "object",
-        "properties": {
-          "savemenu": {
-            "title": "Sauver la position du menu",
-            "type": "boolean",
-            "default": false
-          },
-          "menuposition": {
-            "title": "Menu ouvert par défaut",
-            "type": "boolean",
-            "default": true 
-          },
+  title: 'Configuration',
+  description: 'Configuration',
+  type: 'object',
+  properties: {
+    layout: {
+      title: 'Affichage',
+      description: "Options d'affichage",
+      type: 'object',
+      properties: {
+        savemenu: {
+          title: 'Sauver la position du menu',
+          type: 'boolean',
+          default: false,
         },
-        "required": [ "savemenu", "menuposition" ],
-        "default" : {"savemenu": true, "menuposition" : true}
-      },
-      "client": {
-        "title": "Paramètres personnes",
-        "description": "Paramètres personnes",
-        "type": "object",
-        "properties": {
-          "category": {
-            "title": "Catégorie par défaut",
-            "type": "integer",
-          },
-          "type": {
-            "title": "Type par défaut",
-            "type": "integer",
-          },
+        menuposition: {
+          title: 'Menu ouvert par défaut',
+          type: 'boolean',
+          default: true,
+        },
+        listdetails: {
+          title: 'Affichage des détails',
+          enum: ['right', 'inline'],
+          default: 'right',
         },
       },
+      required: ['savemenu', 'menuposition', 'listdetails'],
+      default: { savemenu: true, menuposition: true, listdetails: 'right' },
     },
-    "required": [ "layout" ]
-  }
+  },
+  required: ['layout'],
+};

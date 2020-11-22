@@ -6,6 +6,6 @@ export default class Donation extends Component {
   static propTypes = {};
 
   render() {
-    return <Icon path={myMdi} color={this.props.color} />;
+    return <Icon path={myMdi} {...this.props} />;
   }
 }

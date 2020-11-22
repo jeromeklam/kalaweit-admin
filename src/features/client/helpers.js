@@ -21,14 +21,7 @@ export const getGlobalActions = ({ props, onClearFilters, onCreate }) => {
   ];
 };
 
-export const getInlineActions = ({
-  props,
-  onOpenDonations,
-  onOpenSponsorships,
-  onGetOne,
-  onDelOne,
-  state,
-}) => {
+export const getInlineActions = ({ props, onSelectList, onGetOne, onDelOne, state }) => {
   return [
     {
       name: 'donation',
@@ -36,7 +29,10 @@ export const getInlineActions = ({
         id: 'app.list.button.donations',
         defaultMessage: 'Donations',
       }),
-      onClick: onOpenDonations,
+      param: 'object',
+      onClick: obj => {
+        onSelectList(obj, 'donation');
+      },
       theme: 'secondary',
       icon: <DonationIcon color="white" />,
       active: state.donations > 0,
@@ -47,7 +43,10 @@ export const getInlineActions = ({
         id: 'app.list.button.sponsorships',
         defaultMessage: 'Sponsorships',
       }),
-      onClick: onOpenSponsorships,
+      param: 'object',
+      onClick: obj => {
+        onSelectList(obj, 'sponsorship');
+      },
       theme: 'secondary',
       icon: <SponsorshipIcon color="white" />,
       active: state.sponsorships > 0,
@@ -81,11 +80,11 @@ export const getCols = ({ props }) => {
       }),
       col: 'id',
       size: { xl: '3', lg: '4' },
-      mob_size: '',
       sortable: true,
       filterable: { type: 'text' },
       title: true,
       first: true,
+      card: { role: 'ID' },
     },
     {
       name: 'category',
@@ -95,9 +94,9 @@ export const getCols = ({ props }) => {
       }),
       col: 'client_category.clic_name',
       size: { xl: '4', lg: '10' },
-      mob_size: '36',
       title: true,
       sortable: true,
+      card: { role: 'FIELD' },
     },
     {
       name: 'lastname',
@@ -107,10 +106,10 @@ export const getCols = ({ props }) => {
       }),
       col: 'cli_lastname',
       size: { xl: '4', lg: '10' },
-      mob_size: '',
       sortable: true,
       filterable: { type: 'text' },
       title: true,
+      card: { role: 'FIELD' },
     },
     {
       name: 'firstname',
@@ -120,10 +119,30 @@ export const getCols = ({ props }) => {
       }),
       col: 'cli_firstname',
       size: { xl: '4', lg: '11' },
-      mob_size: '36',
       sortable: true,
       filterable: { type: 'text' },
       title: true,
+      card: { role: 'FIELD' },
+    },
+    {
+      name: 'fullname',
+      label: props.intl.formatMessage({
+        id: 'app.features.client.list.col.fullname',
+        defaultMessage: 'Fullname',
+      }),
+      col: 'cli_fullname',
+      fDisplay: item => {
+        return (
+          (item.cli_lastname ? item.cli_lastname : '') +
+          ' ' +
+          (item.cli_firstname ? item.cli_firstname : '')
+        );
+      },
+      hidden: true,
+      sortable: false,
+      filterable: false,
+      title: false,
+      card: { role: 'TITLE' },
     },
     {
       name: 'town',
@@ -138,6 +157,7 @@ export const getCols = ({ props }) => {
       filterable: { type: 'text' },
       first: { lg: true },
       title: true,
+      card: { role: 'FIELD' },
     },
     {
       name: 'country',
@@ -152,6 +172,7 @@ export const getCols = ({ props }) => {
       filterable: { type: 'text' },
       first: { lg: true },
       title: true,
+      card: { role: 'FIELD' },
     },
     {
       name: 'email',
@@ -165,6 +186,7 @@ export const getCols = ({ props }) => {
       sortable: true,
       filterable: { type: 'text' },
       title: true,
+      card: { role: 'FIELD' },
     },
     {
       name: 'last_donation',

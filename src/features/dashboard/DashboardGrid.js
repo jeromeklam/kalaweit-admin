@@ -10,7 +10,7 @@ import {
   Friend as FriendIcon,
   Donation as DonationIcon,
 } from '../icons';
-import { DashboardCard, DashboardToolbar } from './';
+import { DashboardCard, DashboardCardStat, DashboardToolbar } from './';
 import { getFromLS, saveToLS } from '../ui';
 import { DashboardJobqueues } from '../jobqueue';
 
@@ -106,18 +106,18 @@ export class DashboardGrid extends Component {
             layouts={layouts}
           >
             <div key="friends" data-grid={{ w: 6, h: 5, x: 14, y: 1, minW: 6, maxW: 18, minH: 4 }}>
-              <DashboardCard
+              <DashboardCardStat
                 title="Amis"
                 count={this.props.dashboard.stats.friends}
-                icon={<FriendIcon />}
+                icon={<FriendIcon size={2} />}
                 size={getLayoutSize(layouts, breakpoint, 'friends')}
               />
             </div>
             <div key="donations" data-grid={{ w: 6, h: 5, x: 21, y: 1, minW: 6, maxW: 18, minH: 4 }}>
-              <DashboardCard
+              <DashboardCardStat
                 title="Donations"
                 count={this.props.dashboard.stats.donations}
-                icon={<DonationIcon />}
+                icon={<DonationIcon size={2} />}
                 size={getLayoutSize(layouts, breakpoint, 'donations')}
               />
             </div>
