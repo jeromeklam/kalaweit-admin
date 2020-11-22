@@ -49,9 +49,6 @@ export default class DashboardCard extends Component {
               {this.props.children !== null && <div>{this.props.children}</div>}
             </div>
           </div>
-          <div className="card-footer">
-            <div className="stats"></div>
-          </div>
         </div>
       </div>
     );

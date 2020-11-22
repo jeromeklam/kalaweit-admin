@@ -7,19 +7,11 @@ import * as actions from './redux/actions';
 import { loadSponsorships } from '../sponsorship/redux/actions';
 import { loadDonations } from '../donation/redux/actions';
 import { normalizedObjectModeler } from 'jsonapi-front';
-import { ResponsiveList, ResponsiveQuickSearch } from 'react-bootstrap-front';
+import { ResponsiveQuickSearch } from 'react-bootstrap-front';
 import {
-  FilterEmpty as FilterEmptyIcon,
-  FilterFull as FilterFullIcon,
-  FilterClear as FilterClearIcon,
-  SimpleCancel as CancelPanelIcon,
-  SimpleValid as ValidPanelIcon,
-  SortDown as SortDownIcon,
-  SortUp as SortUpIcon,
-  Sort as SortNoneIcon,
   Search as SearchIcon,
 } from '../icons';
-import { showErrors, deleteSuccess } from '../ui';
+import { showErrors, deleteSuccess, List as UiList } from '../ui';
 import { getGlobalActions, getInlineActions, getCols } from './';
 import { Create, Modify } from './';
 import { InlineSponsorships } from '../sponsorship';
@@ -35,9 +27,9 @@ export class List extends Component {
     super(props);
     this.state = {
       timer: null,
-      sponsorships: 0,
-      donations: 0,
       cliId: -1,
+      mode: null,
+      item: null,
     };
     this.onCreate = this.onCreate.bind(this);
     this.onGetOne = this.onGetOne.bind(this);
@@ -49,8 +41,7 @@ export class List extends Component {
     this.onQuickSearch = this.onQuickSearch.bind(this);
     this.onSetFiltersAndSort = this.onSetFiltersAndSort.bind(this);
     this.onUpdateSort = this.onUpdateSort.bind(this);
-    this.onOpenSponsorships = this.onOpenSponsorships.bind(this);
-    this.onOpenDonations = this.onOpenDonations.bind(this);
+    this.onSelectList = this.onSelectList.bind(this);
   }
 
   componentDidMount() {
@@ -142,21 +133,15 @@ export class List extends Component {
     this.setState({ timer: timer });
   }
 
-  onOpenSponsorships(id) {
-    const { sponsorships } = this.state;
-    if (sponsorships === id) {
-      this.setState({sponsorships: 0, donations: 0});
+  onSelectList(obj, list) {
+    if (obj) {
+      if (list) {
+        this.setState({ mode: list, item: obj });
+      } else {
+        this.setState({ item: obj });
+      }
     } else {
-      this.setState({sponsorships: id, donations: 0});
-    }
-  }
-
-  onOpenDonations(id) {
-    const { donations } = this.state;
-    if (donations === id) {
-      this.setState({sponsorships: 0, donations: 0});
-    } else {
-      this.setState({sponsorships: 0, donations: id});
+      this.setState({ mode: false, item: null });
     }
   }
 
@@ -186,44 +171,39 @@ export class List extends Component {
         icon={<SearchIcon className="text-secondary" />}
       />
     );
-
     let inlineComponent = null;
-    let id = null;
-    if (this.state.sponsorships > 0) {
-      inlineComponent = <InlineSponsorships mode="client" id={this.state.sponsorships} />
-      id = this.state.sponsorships;
-    } else {
-      inlineComponent = <InlineDonations mode="client" id={this.state.donations} />
-      id = this.state.donations;
+    switch (this.state.mode) {
+      case 'donation':
+        inlineComponent = <InlineDonations mode="client" id={this.state.item.id} />
+        break;
+      case 'sponsorship':
+        inlineComponent = <InlineSponsorships mode="client" id={this.state.item.id} />
+        break;
+      default: 
+        inlineComponent = null;
+        break;
     }
     return (
       <div>
-        <ResponsiveList
+        <UiList
           title={intl.formatMessage({ id: 'app.features.client.list.title', defaultMessage: 'Members' })}
           intl={intl}
           cols={cols}
           items={items}
           quickSearch={quickSearch}
           mainCol="cli_firstname"
-          cancelPanelIcon={<CancelPanelIcon />}
-          validPanelIcon={<ValidPanelIcon />}
-          sortDownIcon={<SortDownIcon color="secondary" />}
-          sortUpIcon={<SortUpIcon color="secondary" />}
-          sortNoneIcon={<SortNoneIcon color="secondary" />}
           inlineActions={inlineActions}
-          inlineOpenedId={id}
+          currentItem={this.state.item}
           inlineComponent={inlineComponent}
           globalActions={globalActions}
           sort={this.props.client.sort}
           filters={this.props.client.filters}
-          filterFullIcon={<FilterFullIcon color="white" />}
-          filterEmptyIcon={<FilterEmptyIcon color="white" />}
-          filterClearIcon={<FilterClearIcon color="white" />}
           onSearch={this.onQuickSearch}
           onSort={this.onUpdateSort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}
           onClearFilters={this.onClearFilters}
           onLoadMore={this.onLoadMore}
+          onClick={this.onSelectList}
           loadMorePending={this.props.client.loadMorePending}
           loadMoreFinish={this.props.client.loadMoreFinish}
           loadMoreError={this.props.client.loadMoreError}
