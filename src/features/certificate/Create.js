@@ -19,14 +19,12 @@ export class Create extends Component {
   }
 }
 
-/* istanbul ignore next */
 function mapStateToProps(state) {
   return {
     certificate: state.certificate,
   };
 }
 
-/* istanbul ignore next */
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ ...actions }, dispatch)

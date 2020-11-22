@@ -38,6 +38,7 @@ const Form = props => {
             name="rec_number"
             id="rec_number"
             required={true}
+            hidden={true}
             value={values.rec_number}
             onChange={handleChange}
             error={getErrorMessage('rec_number')}
