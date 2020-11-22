@@ -110,7 +110,7 @@ export const getCols = ({ props }) => {
     {
       name: 'lastname',
       label: props.intl.formatMessage({
-        id: 'app.features.donation.list.col.realTs',
+        id: 'app.features.donation.list.col.lastname',
         defaultMessage: 'Lastname',
       }),
       col: 'client.cli_lastname',
@@ -123,7 +123,7 @@ export const getCols = ({ props }) => {
     {
       name: 'firstame',
       label: props.intl.formatMessage({
-        id: 'app.features.donation.list.col.realTs',
+        id: 'app.features.donation.list.col.firstname',
         defaultMessage: 'Firstname',
       }),
       col: 'client.cli_firstname',

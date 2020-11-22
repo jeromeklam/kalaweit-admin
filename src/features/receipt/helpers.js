@@ -51,8 +51,7 @@ export const getCols = ({ props }) => {
       mob_size: '',
       sortable: true,
       filterable: { type: 'text' },
-      title: true,
-      first: true,
+      hidden: true,
     },
     {
       name: 'rec_gen_ts',
@@ -64,6 +63,7 @@ export const getCols = ({ props }) => {
       type: 'date',
       filterable: { type: 'date' },
       title: true,
+      first: true,
     },
     {
       name: 'rec_number',

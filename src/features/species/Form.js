@@ -17,7 +17,10 @@ function Form(props) {
       className="m-5"
       size="sm"
       modal={true} 
-      title="Espèces" 
+      title={props.intl.formatMessage({
+        id: 'app.features.species.form.title',
+        defaultMessage: 'Species',
+      })}
       onSubmit={handleSubmit} 
       onCancel={handleCancel}
       onClose={props.onClose}

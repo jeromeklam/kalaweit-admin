@@ -16,12 +16,16 @@ import {
   Receipt as ReceiptIcon,
 } from '../icons';
 
-export const appMenu = (types) => {
+const styleSocial = {
+  height: '45px',
+  width: '45px',
+  marginLeft: '5px',
+};
+
+export const appMenu = types => {
   let causes = [];
-  console.log("FK",types);
   if (types) {
-    
-    types.forEach((elem) => {
+    types.forEach(elem => {
       causes.push({
         icon: '',
         label: elem.label,
@@ -50,15 +54,31 @@ export const appMenu = (types) => {
       icon: <LogoutIcon />,
       label: <FormattedMessage id="app.features.home.app.menu.signout" defaultMessage="Sign out" />,
       url: '/auth/signout',
-      role: 'SIGNOUT',
+      role: '-SIGNOUT-',
       public: false,
     },
     {
-      icon: <SocialIcon url="https://facebook.com/KalaweitFrance/" />,
+      icon: <SocialIcon url="https://facebook.com/KalaweitFrance/" style={styleSocial} />,
       label: 'Facebook',
       url: null,
       role: 'SOCIAL',
       position: 1,
+      public: true,
+    },
+    {
+      icon: <SocialIcon url="https://twitter.com/kalaweit" style={styleSocial} />,
+      label: 'Twitter',
+      url: null,
+      role: 'SOCIAL',
+      position: 2,
+      public: true,
+    },
+    {
+      icon: <SocialIcon url="https://www.instagram.com/chaneekalaweit/" style={styleSocial} />,
+      label: 'Instagram',
+      url: null,
+      role: 'SOCIAL',
+      position: 3,
       public: true,
     },
     {
@@ -177,7 +197,7 @@ export const appMenu = (types) => {
         {
           icon: null,
           label: (
-            <FormattedMessage id="app.features.home.app.menu.site" defaultMessage="Locations" />
+            <FormattedMessage id="app.features.home.app.menu.locations" defaultMessage="Locations" />
           ),
           url: '/site',
           role: 'NAV',
@@ -275,7 +295,9 @@ export const appMenu = (types) => {
     },
     {
       icon: <AboutIcon />,
-      label: <FormattedMessage id="app.features.home.app.menu.aboutUs" defaultMessage="About Us" />,
+      label: (
+        <FormattedMessage id="app.features.home.app.menu.whoAreWe" defaultMessage="Who are we ?" />
+      ),
       url: '/about',
       role: 'ABOUT',
       public: true,

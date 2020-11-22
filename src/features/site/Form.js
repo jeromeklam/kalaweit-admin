@@ -37,8 +37,6 @@ function Form(props) {
       title={values.site_name}
       size="md"
       modal={true}
-      tab={values.currentTab}
-      tabs={tabs}
       onSubmit={handleSubmit}
       onCancel={handleCancel}
       onNavTab={handleNavTab}
@@ -129,15 +127,15 @@ function Form(props) {
           </div>
           <div className="row">
             <div className="col-xs-w36">
-              <InputText
+              <InputTextarea
                 label={intl.formatMessage({
-                  id: 'app.features.site.form.area',
-                  defaultMessage: 'Area',
+                  id: 'app.features.site.form.comments',
+                  defaultMessage: 'Comments',
                 })}
-                name="site_area"
-                value={values.site_area}
+                name="site_desc"
+                value={values.site_desc}
                 onChange={handleChange}
-                error={getErrorMessage('site_area')}
+                error={getErrorMessage('site_desc')}
               />
             </div>
           </div>
@@ -191,15 +189,15 @@ function Form(props) {
           </div>
           <div className="row">
             <div className="col-xs-w36">
-              <InputTextarea
+              <InputText
                 label={intl.formatMessage({
-                  id: 'app.features.site.form.comments',
-                  defaultMessage: 'Comments',
+                  id: 'app.features.site.form.area',
+                  defaultMessage: 'Area',
                 })}
-                name="site_desc"
-                value={values.site_desc}
+                name="site_area"
+                value={values.site_area}
                 onChange={handleChange}
-                error={getErrorMessage('site_desc')}
+                error={getErrorMessage('site_area')}
               />
             </div>
           </div>
