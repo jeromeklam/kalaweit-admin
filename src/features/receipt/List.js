@@ -17,8 +17,8 @@ import {
   Sort as SortNoneIcon,
   Search as SearchIcon,
 } from '../icons';
-import { getGlobalActions, getInlineActions, getCols } from './';
-import { Create, Modify } from './';
+import { List as UiList } from '../ui';
+import { getGlobalActions, getInlineActions, getCols, Create, Modify } from './';
 
 export class List extends Component {
   static propTypes = {
@@ -152,28 +152,21 @@ export class List extends Component {
     );
     return (
       <div>
-        <ResponsiveList
+        <UiList
           title={intl.formatMessage({ id: 'app.features.receipt.list.title', defaultMessage: 'Receipts' })}
           cols={cols}
           items={items}
           quickSearch={quickSearch}
           mainCol="rec_fullname,rec_email"
-          cancelPanelIcon={<CancelPanelIcon />}
-          validPanelIcon={<ValidPanelIcon />}
-          sortDownIcon={<SortDownIcon color="secondary" />}
-          sortUpIcon={<SortUpIcon color="secondary" />}
-          sortNoneIcon={<SortNoneIcon color="secondary" />}
+          onClick={this.onSelectList}
           inlineActions={inlineActions}
           globalActions={globalActions}
-          sort={this.props.receipt.sort}
           filters={this.props.receipt.filters}
-          filterFullIcon={<FilterFullIcon color="white" />}
-          filterEmptyIcon={<FilterEmptyIcon color="white" />}
-          filterClearIcon={<FilterClearIcon color="white" />}
-          onSearch={this.onQuickSearch}
-          onClearFilters={this.onClearFilters}
           onSort={this.onUpdateSort}
+          onSearch={this.onQuickSearch}
+          sort={this.props.receipt.sort}
           onSetFiltersAndSort={this.onSetFiltersAndSort}
+          onClearFilters={this.onClearFilters}
           onLoadMore={this.onLoadMore}
           loadMorePending={this.props.receipt.loadMorePending}
           loadMoreFinish={this.props.receipt.loadMoreFinish}

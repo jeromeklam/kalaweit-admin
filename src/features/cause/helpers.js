@@ -135,10 +135,7 @@ export const getCols = ({ props }) => {
   return [
     {
       name: 'photo',
-      label: props.intl.formatMessage({
-        id: 'app.features.cause.list.col.picture',
-        defaultMessage: 'Picture',
-      }),
+      label: '',
       col: 'default_blob.caum_short_blob',
       size: '3',
       mob_size: '',

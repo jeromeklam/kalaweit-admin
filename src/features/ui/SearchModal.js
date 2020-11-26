@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { ResponsiveModal, FILTER_OPER_LIKE, FILTER_MODE_AND } from 'react-bootstrap-front';
 import { CenteredLoading3Dots } from './';
 
-export default class SearchModal extends Component {
+class SearchModal extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
@@ -26,11 +27,11 @@ export default class SearchModal extends Component {
       const found = props.filters.find(filter => filter.name === field.name);
       if (found) {
         if (found.value !== field.origin) {
-          field.origin = found.value ;
-          field.value = found.value ;
+          field.origin = found.value;
+          field.value = found.value;
         }
       }
-    })
+    });
     return false;
   }
 
@@ -100,13 +101,13 @@ export default class SearchModal extends Component {
         item.options.forEach(elem => {
           values.push(elem.value);
         });
-        params.filter[this.state.condition][item.name] = {[FILTER_OPER_LIKE]: values};
+        params.filter[this.state.condition][item.name] = { [FILTER_OPER_LIKE]: values };
       } else {
         if (item.value !== '') {
           if (params === false) {
             params = { filter: { [this.state.condition]: {} } };
           }
-          params.filter[this.state.condition][item.name] = {[FILTER_OPER_LIKE]: item.value};
+          params.filter[this.state.condition][item.name] = { [FILTER_OPER_LIKE]: item.value };
         }
       }
     });
@@ -117,9 +118,36 @@ export default class SearchModal extends Component {
   render() {
     const fields = this.props.pickerDisplay.split(',');
     const buttons = [
-      { name: 'Filtrer', function: this.onSearch, theme: 'primary', icon: 'filter' },
-      { name: 'Effacer', function: this.onClear, theme: 'warning', icon: 'delete' },
-      { name: 'Annuler', function: this.props.onClose, theme: 'secondary', icon: 'close' },
+      {
+        name: this.props.intl.formatMessage({
+          id: 'app.features.ui.searchModal.filter',
+          defaultMessage: 'Filter',
+        }),
+        function: this.onSearch,
+        theme: 'primary',
+        icon: 'filter',
+      },
+      {
+        name: this.props.intl.formatMessage({
+          id: 'app.features.ui.searchModal.delete',
+          defaultMessage: 'Delete',
+        }),
+        function: this.onClear,
+        theme: 'warning',
+        icon: 'delete',
+      },
+      {
+        name: this.props.intl.formatMessage({
+          id: 'app.features.ui.searchModal.cancel',
+          defaultMessage: 'Cancel',
+        }),
+        function: this.props.onClose,
+        theme: 'secondary',
+        icon: 'close',
+      },
+
+      ('app.features.ui.searchModal.delete': 'Effacer'),
+      ('app.features.ui.searchModal.cancel': 'Annuler'),
     ];
     const searchArea = (
       <div onKeyUp={this.handleKeyUp}>
@@ -219,3 +247,5 @@ export default class SearchModal extends Component {
     );
   }
 }
+
+export default injectIntl(SearchModal);
