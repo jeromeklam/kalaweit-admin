@@ -16,6 +16,7 @@ import { reducer as updateOneReducer } from './updateOne';
 import { reducer as updatePasswordReducer } from './updatePassword';
 import { reducer as updateConfigReducer } from './updateConfig';
 import { reducer as changeSettingReducer } from './changeSetting';
+import { reducer as setRealmReducer } from './setRealm';
 import { reducer as propagateReducer } from './propagate';
 
 const reducers = [
@@ -29,6 +30,7 @@ const reducers = [
   updateConfigReducer,
   changeSettingReducer,
   propagateReducer,
+  setRealmReducer,
 ];
 
 export default function reducer(state = initialState, action) {

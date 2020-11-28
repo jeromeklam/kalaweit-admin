@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import { getJsonApi } from 'jsonapi-front';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import * as actions from './redux/actions';
-import {
-  Site as SiteIcon,
-  Cause as CauseIcon,
-  Friend as FriendIcon,
-  Donation as DonationIcon,
-} from '../icons';
-import { DashboardCard, DashboardCardStat, DashboardToolbar } from './';
-import { getFromLS, saveToLS } from '../ui';
+import { updateConfig } from '../auth/redux/actions';
+import { Friend as FriendIcon, Donation as DonationIcon } from '../icons';
+import { DashboardCardStat, DashboardToolbar } from './';
+import { getFromLS, saveToLS, modifySuccess, showErrors } from '../ui';
 import { DashboardJobqueues } from '../jobqueue';
 
 const getLayoutSize = (layouts, breakpoint, key) => {
@@ -48,26 +46,32 @@ export class DashboardGrid extends Component {
 
   constructor(props) {
     super(props);
-    const originalLayouts = props.auth.cache || getFromLS('layouts') || {};
+    const originalLayouts = getFromLS('layouts') || {};
     this.state = {
       breakpoint: 'lg',
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
       editable: false,
+      savedLayouts: {},
     };
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
     this.onResetLayout = this.onResetLayout.bind(this);
-    this.onEdit = this.onEdit.bind(this);
-    this.onEditStop = this.onEditStop.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.actions.loadMore();
+    this.onResizeStop = this.onResizeStop.bind(this);
+    this.onEditStart = this.onEditStart.bind(this);
+    this.onEditCancel = this.onEditCancel.bind(this);
+    this.onRefresh = this.onRefresh.bind(this);
+    this.onSaveLayout = this.onSaveLayout.bind(this);
   }
 
   onLayoutChange(layout, layouts) {
-    saveToLS('layouts', layouts);
     this.setState({ layouts });
+  }
+
+  onRefresh(evt) {
+    if (evt) {
+      evt.preventDefault();
+    }
+    this.props.actions.loadMore();
   }
 
   onBreakpointChange(breakpoint) {
@@ -76,17 +80,40 @@ export class DashboardGrid extends Component {
 
   onResetLayout() {
     const originalLayouts = {};
-    const layouts =  JSON.parse(JSON.stringify(originalLayouts));
-    saveToLS('layouts', layouts);
+    const layouts = JSON.parse(JSON.stringify(originalLayouts));
     this.setState({ layouts });
   }
 
-  onEdit() {
-    this.setState({editable: true});
+  onResizeStop(param1, param2) {}
+
+  onEditStart() {
+    this.setState({ editable: true, savedLayouts: this.state.layouts });
   }
 
-  onEditStop() {
-    this.setState({editable: false});
+  onEditCancel() {
+    this.setState({ editable: false, layouts: this.state.savedLayouts });
+  }
+
+  onSaveLayout(evt) {
+    if (evt) {
+      evt.preventDefault();
+    }
+    saveToLS('layouts', this.state.layouts);
+    this.setState({ editable: false });
+    const datas = {
+      type: 'FreeSSO_ConfigRequest',
+      config: JSON.stringify(this.state.layouts),
+      config_type: 'cache',
+    };
+    let obj = getJsonApi(datas);
+    this.props.actions
+      .updateConfig(obj)
+      .then(result => {
+        modifySuccess();
+      })
+      .catch(errors => {
+        showErrors(this.props.intl, errors, 'updateOneError');
+      });
   }
 
   render() {
@@ -94,34 +121,56 @@ export class DashboardGrid extends Component {
     if (this.props.auth.authenticated && this.props.dashboard.stats) {
       return (
         <div>
-          <DashboardToolbar onResetLayout={this.onResetLayout} onEdit={this.onEdit} onEditStop={this.onEditStop} />
+          <DashboardToolbar
+            editable={this.state.editable}
+            onRefresh={this.onRefresh}
+            onReset={this.onResetLayout}
+            onSave={this.onSaveLayout}
+            onResetLayout={this.onResetLayout}
+            onEditStart={this.onEditStart}
+            onEditCancel={this.onEditCancel}
+          />
           <ResponsiveReactGridLayout
-            className="layout"
+            className="layout p-2"
             cols={{ lg: 36, md: 36, sm: 36, xs: 36, xxs: 36 }}
             rowHeight={30}
             verticalCompact={true}
             onResize={this.onResize}
             onLayoutChange={this.onLayoutChange}
+            onResizeStop={this.onResizeStop}
             onBreakpointChange={this.onBreakpointChange}
+            draggableHandle=".card-draggable-area"
             layouts={layouts}
+            isDraggable={this.state.editable}
+            isResizable={this.state.editable}
           >
-            <div key="friends" data-grid={{ w: 6, h: 5, x: 14, y: 1, minW: 6, maxW: 18, minH: 4 }}>
+            <div key="friends" data-grid={{ w: 6, h: 2, x: 14, y: 1, minW: 6, maxW: 6, minH: 2, maxH: 2 }}>
               <DashboardCardStat
                 title="Amis"
                 count={this.props.dashboard.stats.friends}
                 icon={<FriendIcon size={2} />}
+                url="/client"
+                overlay={this.state.editable}
                 size={getLayoutSize(layouts, breakpoint, 'friends')}
               />
             </div>
-            <div key="donations" data-grid={{ w: 6, h: 5, x: 21, y: 1, minW: 6, maxW: 18, minH: 4 }}>
+            <div
+              key="donations"
+              data-grid={{ w: 6, h: 2, x: 21, y: 1, minW: 6, maxW: 6, minH: 2, maxH: 2 }}
+            >
               <DashboardCardStat
                 title="Donations"
                 count={this.props.dashboard.stats.donations}
                 icon={<DonationIcon size={2} />}
+                url="/donation"
+                overlay={this.state.editable}
                 size={getLayoutSize(layouts, breakpoint, 'donations')}
               />
             </div>
-            <div key="jobqueues" data-grid={{ w: 18, h: 5, x: 0, y: 5, minW: 18, maxW: 36, minH: 5 }}>
+            <div
+              key="jobqueues"
+              data-grid={{ w: 18, h: 5, x: 0, y: 5, minW: 18, maxW: 36, minH: 5 }}
+            >
               <DashboardJobqueues />
             </div>
           </ResponsiveReactGridLayout>
@@ -141,8 +190,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...actions }, dispatch),
+    actions: bindActionCreators({ ...actions, updateConfig }, dispatch),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardGrid);
+export default injectIntl(connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DashboardGrid));

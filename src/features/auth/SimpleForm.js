@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { push } from 'connected-react-router';
 import * as actions from './redux/actions';
 import { getJsonApi } from 'jsonapi-front';
 import { setModelValue, propagateModel } from '../../common';
@@ -164,7 +165,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...actions, propagateModel }, dispatch),
+    actions: bindActionCreators({ ...actions, propagateModel, push }, dispatch),
   };
 }
 

@@ -1,5 +1,5 @@
 import { freeAssoApi } from '../../../common';
-import { jsonApiNormalizer, normalizedObjectModeler  } from 'jsonapi-front';
+import { jsonApiNormalizer, normalizedObjectModeler } from 'jsonapi-front';
 import {
   AUTH_SIGN_IN_BEGIN,
   AUTH_SIGN_IN_SUCCESS,
@@ -8,7 +8,7 @@ import {
 } from './constants';
 import cookie from 'react-cookies';
 import { schema, defaultConfig } from '../';
-import { saveToLS } from '../../ui';
+import { saveToLS, getFromLS } from '../../ui';
 import Ajv from 'ajv';
 
 export function signIn(args = {}) {
@@ -62,6 +62,9 @@ export function reducer(state, action) {
       let token = false;
       let authenticated = false;
       let more = {};
+      let realm = state.realm;
+      let inputMoney = state.inputMoney;
+      let displayMoney = state.displayMoney;
       if (datas && datas.headers && datas.headers.authorization) {
         token = datas.headers.authorization;
       }
@@ -71,7 +74,9 @@ export function reducer(state, action) {
       }
       if (datas.data) {
         let object = jsonApiNormalizer(datas.data);
-        user = normalizedObjectModeler(object, 'FreeSSO_User', object.SORTEDELEMS[0], {eager: true});
+        user = normalizedObjectModeler(object, 'FreeSSO_User', object.SORTEDELEMS[0], {
+          eager: true,
+        });
       }
       if (user) {
         authenticated = true;
@@ -103,6 +108,22 @@ export function reducer(state, action) {
         const ajv = new Ajv({ allErrors: true, verbose: true, useDefaults: true });
         const validate = ajv.compile(schema);
         validate(more.settings);
+        let defaultRealm = getFromLS('realm');
+        if (user.realms && Array.isArray(user.realms)) {
+          const found = user.realms.find(item => {
+            return parseInt(item.id, 10) === parseInt(defaultRealm, 10);
+          });
+          if (found) {
+            realm = found;
+          } else {
+            user.realms.forEach(item => {
+              realm = item;
+              saveToLS('realm', realm.id);
+            });
+          }
+          inputMoney = realm.grp_money_input;
+          displayMoney = realm.grp_money_code;
+        }
       }
       return {
         ...state,
@@ -113,6 +134,9 @@ export function reducer(state, action) {
         authenticated: authenticated,
         signInPending: false,
         signInError: null,
+        inputMoney: inputMoney,
+        displayMoney: displayMoney,
+        realm: realm,
       };
 
     case AUTH_SIGN_IN_FAILURE:

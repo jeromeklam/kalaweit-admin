@@ -26,6 +26,8 @@ const initialState = {
   updateConfigError: null,
   changeSettingPending: false,
   changeSettingError: null,
+  inputMoney: 'EUR',
+  displayMoney: 'EUR',
 };
 
 export default initialState;

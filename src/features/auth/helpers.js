@@ -38,3 +38,13 @@ export const schema = {
   },
   required: ['layout'],
 };
+
+export const getRealms = (user) => {
+  let realms = [];
+  if (user && user.realms && Array.isArray(user.realms)) {
+    user.realms.forEach(item => {
+      realms.push({value: item.id, label: item.grp_name});
+    });
+  }
+  return realms;
+}

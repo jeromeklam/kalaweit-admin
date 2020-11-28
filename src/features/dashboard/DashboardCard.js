@@ -40,7 +40,7 @@ export default class DashboardCard extends Component {
                 <div className="card-icon card-icon-btn">{this.props.icon}</div>
               </div>
             )}
-            <p className="card-category">{this.props.title}</p>
+            <p className="card-category card-draggable-area">{this.props.title}</p>
             {this.props.header}
           </div>
           <div className="card-body">

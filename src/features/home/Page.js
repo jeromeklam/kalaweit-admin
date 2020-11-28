@@ -17,7 +17,7 @@ import {
   SocketDisconnected,
 } from '../icons';
 import { getFullName } from '../user';
-import { SimpleForm } from '../auth';
+import { SimpleForm, getRealms } from '../auth';
 import { causeTypeAsOptions } from '../cause-type';
 import { CenteredLoading9X9 } from '../ui';
 import { appMenu } from './';
@@ -36,6 +36,7 @@ export class Page extends Component {
     this.onNavigate = this.onNavigate.bind(this);
     this.onLocaleChange = this.onLocaleChange.bind(this);
     this.onChangeSettings = this.onChangeSettings.bind(this);
+    this.onRealmSelect = this.onRealmSelect.bind(this);
   }
 
   onChangeSettings(setting, value) {
@@ -44,6 +45,10 @@ export class Page extends Component {
 
   onLocaleChange(locale) {
     this.props.actions.setLocale(locale);
+  }
+
+  onRealmSelect(realm_id) {
+    this.props.actions.setRealm(realm_id);
   }
 
   onNavigate(url) {
@@ -68,7 +73,7 @@ export class Page extends Component {
         });
       }
     }
-    //email={this.props.auth.user.user_email}
+    const locale = this.props.home.locale || 'fr';
     return (
       <div className="home-page">
         <img className="fond-site2 d-none d-sm-block" src={fond} alt="" />
@@ -81,6 +86,15 @@ export class Page extends Component {
           authenticated={this.props.auth.authenticated}
           location={this.props.location}
           onNavigate={this.onNavigate}
+          locales={[
+            { code: 'fra', locale: 'fr', label: 'Français' },
+            { code: 'gbr', locale: 'en', label: 'Royaume-Uni' },
+          ]}
+          currentLocale={locale}
+          onLocale={this.onLocaleChange}
+          currentRealm={this.props.auth.realm && this.props.auth.realm.id}
+          realms={getRealms(this.props.auth.user)}
+          onRealmSelect={this.onRealmSelect}
           onChangeSettings={this.onChangeSettings}
           userForm={<SimpleForm />}
           accountOpened={<AccountClose size="38" />}
@@ -88,7 +102,10 @@ export class Page extends Component {
             this.props.auth.user ? (
               <Avatar
                 className="rounded-circle avatar-header"
-                email={(!this.props.auth.user.user_avatar || this.props.auth.user.user_avatar === '') && this.props.auth.user.user_email}
+                email={
+                  (!this.props.auth.user.user_avatar || this.props.auth.user.user_avatar === '') &&
+                  this.props.auth.user.user_email
+                }
                 name={getFullName(this.props.auth.user)}
                 src={
                   this.props.auth.user.user_avatar && this.props.auth.user.user_avatar !== ''
@@ -102,6 +119,7 @@ export class Page extends Component {
           menuOpened={<MenuOpenedIcon />}
           menuClosed={<MenuClosedIcon />}
           footer={!this.props.auth.authenticated}
+          t={this.props.intl.formatMessage}
         >
           {this.props.auth.firstCheck &&
           (!this.props.auth.authenticated || this.props.home.loadAllFinish) ? (
@@ -125,9 +143,9 @@ export class Page extends Component {
 
 function mapStateToProps(state) {
   return {
-    home: state.home,
     auth: state.auth,
     causeTypes: state.causeType.items || [],
+    home: state.home,
   };
 }
 
@@ -137,4 +155,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Page));
+export default injectIntl(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Page),
+);

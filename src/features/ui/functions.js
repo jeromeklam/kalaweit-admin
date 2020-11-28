@@ -39,11 +39,16 @@ export const getFromLS = key => {
 
 export const saveToLS = (key, value) => {
   if (global.localStorage) {
+    let ls = {};
+    try {
+      ls = JSON.parse(global.localStorage.getItem('rgl-8')) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+    ls[key] = value;
     global.localStorage.setItem(
       'rgl-8',
-      JSON.stringify({
-        [key]: value,
-      }),
+      JSON.stringify(ls),
     );
   }
 };
@@ -89,7 +94,7 @@ export function showErrors(intl, error, defCode = "", firstMess = "") {
           } else {
             if (oneError.status) {
               const code = `app.errors.code.${oneError.status}`;
-              const message = firstMess +  intl.formatMessage({
+              const message = firstMess + intl.formatMessage({
                 id: code,
                 defaultMessage: oneError.title,
               });

@@ -8,6 +8,7 @@ const initialState = {
   socketOn: false,
   socketConnected: false,
   socketMessage: null,
+  locale: 'fr',
 };
 
 export default initialState;

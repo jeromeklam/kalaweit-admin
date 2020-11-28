@@ -76,28 +76,39 @@ const useForm = (
   intl = null,
   afterChange = null,
   init = null,
+  locked = [],
 ) => {
-  const initial = init ? init(initialState) : initialState;
   const [values, setValues] = useState({
-    ...initial,
+    ...initialState,
     currentTab: initialTab,
-    loadCauseType: false,
-    loadSiteType: false,
-    loadClient: false,
-    loadContract: false,
-    loadCause: false,
-    loadSite: false,
-    loadUser: false,
-    loadSickness: false,
-    errors: errors,
-    sending: false,
+    __create: parseInt(initialState.id, 10) <= 0 ? true : false,
+    __modify: parseInt(initialState.id, 10) > 0 ? true : false,
+    __loadCauseType: false,
+    __loadSiteType: false,
+    __loadClient: false,
+    __loadContract: false,
+    __loadCause: false,
+    __loadSite: false,
+    __loadUser: false,
+    __loadSickness: false,
+    __sending: false,
+    __locked: locked,
   });
+  if (init) {
+    const newItem = init(values, elems => {
+      setValues({ ...values, ...elems });
+    });
+    if (newItem !== values) {
+      //console.log('init');
+      setValues(newItem);
+    }
+  }
 
   const handleChange = event => {
     if (event && event.persist) {
       event.persist();
     }
-    values.sending = false;
+    values.__sending = false;
     let tType = event.target.dataset && event.target.dataset.type ? event.target.dataset.type : '';
     if (tType === '') {
       tType = event.target.type || 'text';
@@ -113,13 +124,13 @@ const useForm = (
           values[first] = datas;
           break;
         case 'FreeSSO_User':
-          if (!values.loadUser) {
+          if (!values.__loadUser) {
             const id = event.target.value || '0';
-            values.loadUser = true;
+            values.__loadUser = true;
             setValues(explodeReduxModel(values));
             _loadUser(id)
               .then(result => {
-                values.loadUser = false;
+                values.__loadUser = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeSSO_User', id, {
@@ -133,19 +144,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadUser = false;
+                values.__loadUser = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Cause':
-          if (!values.loadCause) {
+          if (!values.__loadCause) {
             const id = event.target.value || '0';
-            values.loadCause = true;
+            values.__loadCause = true;
             setValues(explodeReduxModel(values));
             _loadCause(id)
               .then(result => {
-                values.loadCause = false;
+                values.__loadCause = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Cause', id, {
@@ -159,19 +170,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadCause = false;
+                values.__loadCause = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Client':
-          if (!values.loadClient) {
+          if (!values.__loadClient) {
             const id = event.target.value || '0';
-            values.loadClient = true;
+            values.__loadClient = true;
             setValues(explodeReduxModel(values));
             _loadClient(id)
               .then(result => {
-                values.loadClient = false;
+                values.__loadClient = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Client', id, {
@@ -185,19 +196,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadClient = false;
+                values.__loadClient = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Contract':
-          if (!values.loadContract) {
+          if (!values.__loadContract) {
             const id = event.target.value || '0';
-            values.loadContract = true;
+            values.__loadContract = true;
             setValues(explodeReduxModel(values));
             _loadContract(id)
               .then(result => {
-                values.loadContract = false;
+                values.__loadContract = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Contract', id, {
@@ -211,19 +222,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadContract = false;
+                values.__loadContract = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_SiteType':
-          if (!values.loadSiteType) {
+          if (!values.__loadSiteType) {
             const id = event.target.value || '0';
-            values.loadSiteType = true;
+            values.__loadSiteType = true;
             setValues(explodeReduxModel(values));
             _loadSiteType(id)
               .then(result => {
-                values.loadSiteType = false;
+                values.__loadSiteType = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_SiteType', id, {
@@ -237,19 +248,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSiteType = false;
+                values.__loadSiteType = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Site':
-          if (!values.loadSite) {
+          if (!values.__loadSite) {
             const id = event.target.value || '0';
-            values.loadSite = true;
+            values.__loadSite = true;
             setValues(explodeReduxModel(values));
             _loadSite(id)
               .then(result => {
-                values.loadSite = false;
+                values.__loadSite = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Site', id, { eager: true });
@@ -261,19 +272,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSite = false;
+                values.__loadSite = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Sickness':
-          if (!values.loadSickness) {
+          if (!values.__loadSickness) {
             const id = event.target.value || '0';
-            values.loadSickness = true;
+            values.__loadSickness = true;
             setValues(explodeReduxModel(values));
             _loadSickness(id)
               .then(result => {
-                values.loadSickness = false;
+                values.__loadSickness = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Sickness', id, {
@@ -287,7 +298,7 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSickness = false;
+                values.__loadSickness = false;
                 setValues(explodeReduxModel(values));
               });
           }
@@ -316,13 +327,13 @@ const useForm = (
           values[first] = datas;
           break;
         case 'FreeSSO_User':
-          if (!values.loadUser) {
+          if (!values.__loadUser) {
             const id = event.target.value || '0';
-            values.loadUser = true;
+            values.__loadUser = true;
             setValues(explodeReduxModel(values));
             _loadUser(id)
               .then(result => {
-                values.loadUser = false;
+                values.__loadUser = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeSSO_User', id, {
@@ -336,19 +347,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadUser = false;
+                values.__loadUser = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_CauseType':
-          if (!values.loadCauseType) {
+          if (!values.__loadCauseType) {
             const id = event.target.value || '0';
-            values.loadCauseType = true;
+            values.__loadCauseType = true;
             setValues(explodeReduxModel(values));
             _loadCauseType(id)
               .then(result => {
-                values.loadCauseType = false;
+                values.__loadCauseType = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_CauseType', id, {
@@ -362,19 +373,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadCauseType = false;
+                values.__loadCauseType = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_SiteType':
-          if (!values.loadSiteType) {
+          if (!values.__loadSiteType) {
             const id = event.target.value || '0';
-            values.loadSiteType = true;
+            values.__loadSiteType = true;
             setValues(explodeReduxModel(values));
             _loadSiteType(id)
               .then(result => {
-                values.loadSiteType = false;
+                values.__loadSiteType = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_SiteType', id, {
@@ -388,19 +399,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSiteType = false;
+                values.__loadSiteType = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Cause':
-          if (!values.loadCause) {
+          if (!values.__loadCause) {
             const id = event.target.value || '0';
-            values.loadCause = true;
+            values.__loadCause = true;
             setValues(explodeReduxModel(values));
             _loadCause(id)
               .then(result => {
-                values.loadCause = false;
+                values.__loadCause = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Cause', id, {
@@ -414,19 +425,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadCause = false;
+                values.__loadCause = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Client':
-          if (!values.loadClient) {
+          if (!values.__loadClient) {
             const id = event.target.value || '0';
-            values.loadClient = true;
+            values.__loadClient = true;
             setValues(explodeReduxModel(values));
             _loadClient(id)
               .then(result => {
-                values.loadClient = false;
+                values.__loadClient = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Client', id, {
@@ -440,19 +451,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadClient = false;
+                values.__loadClient = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Contract':
-          if (!values.loadContract) {
+          if (!values.__loadContract) {
             const id = event.target.value || '0';
-            values.loadContract = true;
+            values.__loadContract = true;
             setValues(explodeReduxModel(values));
             _loadContract(id)
               .then(result => {
-                values.loadContract = false;
+                values.__loadContract = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Contract', id, {
@@ -466,19 +477,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadContract = false;
+                values.__loadContract = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Site':
-          if (!values.loadSite) {
+          if (!values.__loadSite) {
             const id = event.target.value || '0';
-            values.loadSite = true;
+            values.__loadSite = true;
             setValues(explodeReduxModel(values));
             _loadSite(id)
               .then(result => {
-                values.loadSite = false;
+                values.__loadSite = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Site', id, { eager: true });
@@ -490,19 +501,19 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSite = false;
+                values.__loadSite = false;
                 setValues(explodeReduxModel(values));
               });
           }
           break;
         case 'FreeAsso_Sickness':
-          if (!values.loadSickness) {
+          if (!values.__loadSickness) {
             const id = event.target.value || '0';
-            values.loadSickness = true;
+            values.__loadSickness = true;
             setValues(explodeReduxModel(values));
             _loadSickness(id)
               .then(result => {
-                values.loadSickness = false;
+                values.__loadSickness = false;
                 if (result && result.data) {
                   const lines = jsonApiNormalizer(result.data);
                   const item = normalizedObjectModeler(lines, 'FreeAsso_Sickness', id, {
@@ -516,7 +527,7 @@ const useForm = (
                 }
               })
               .catch(err => {
-                values.loadSickness = false;
+                values.__loadSickness = false;
                 setValues(explodeReduxModel(values));
               });
           }
@@ -534,8 +545,8 @@ const useForm = (
   };
 
   const handleSubmit = event => {
-    if (!values.sending) {
-      //values.sending = true;
+    if (!values.__sending) {
+      //values.__sending = true;
       setValues(explodeReduxModel(values));
       if (event) event.preventDefault();
       onSubmit(values);
@@ -543,8 +554,8 @@ const useForm = (
   };
 
   const handleCancel = event => {
-    if (!values.sending) {
-      //values.sending = true;
+    if (!values.__sending) {
+      //values.__sending = true;
       setValues(explodeReduxModel(values));
       if (event) event.preventDefault();
       onCancel();
@@ -555,10 +566,37 @@ const useForm = (
     setValues({ ...values, currentTab: keyTab });
   };
 
+  const getCurrentTab = () => {
+    return values.currentTab;
+  }
+
+  const isLocked = (p_field) => {
+    const found = values.__locked.find(elem => elem.field === p_field);
+    if (found) {
+      return found.locked;
+    }
+    return null;
+  }
+
+  const toggleLockOn = (p_field) => {
+    const found = values.__locked.findIndex(elem => elem.field === p_field);
+    if (found >= 0) {
+      values.__locked[found].locked = true;
+    }
+    setValues({ ...values });
+  }
+
+  const toggleLockOff = (p_field) => {
+    const found = values.__locked.findIndex(elem => elem.field === p_field);
+    if (found >= 0) {
+      values.__locked[found].locked = false;
+    }
+    setValues({ ...values });
+  }
+
   const getErrorMessage = field => {
     //const intl = useIntl();
     let message = false;
-
     if (errors && errors.errors) {
       errors.errors.forEach(error => {
         if (error.source && error.source.parameter === field) {
@@ -579,6 +617,10 @@ const useForm = (
     handleCancel,
     handleNavTab,
     getErrorMessage,
+    getCurrentTab,
+    isLocked,
+    toggleLockOn,
+    toggleLockOff,
   };
 };
 

@@ -98,7 +98,9 @@ function Form(props) {
     props.onCancel,
     null,
     props.errors,
+    props.intl,
     afterChange,
+    null,
     lockedFields,
   );
   /**
@@ -349,7 +351,7 @@ function Form(props) {
                 labelTop={true}
                 value={values.don_status}
                 onChange={handleChange}
-                options={() => getStatus(intl)}
+                options={getStatus(intl)}
                 error={getErrorMessage('don_status')}
               />
             </div>

@@ -15,11 +15,12 @@ class SearchModal extends Component {
     onClose: PropTypes.func.isRequired,
     onSelect: PropTypes.func.isRequired,
     list: PropTypes.array,
-    pickerDisplay: PropTypes.string.isRequired,
+    pickerDisplay: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     filters: PropTypes.array,
   };
   static defaultProps = {
     list: [],
+    pickerDisplay: '',
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -116,7 +117,6 @@ class SearchModal extends Component {
   }
 
   render() {
-    const fields = this.props.pickerDisplay.split(',');
     const buttons = [
       {
         name: this.props.intl.formatMessage({
@@ -229,11 +229,17 @@ class SearchModal extends Component {
                           }}
                         >
                           <p>
-                            {fields.map((elem, i) => (
-                              <span className="mr-2" key={`key-${i}`}>
-                                {item[elem] ? item[elem] : elem}
-                              </span>
-                            ))}
+                            {typeof this.props.pickerDisplay === 'function' ? (
+                              <span />
+                            ) : (
+                              <div>
+                                {this.props.pickerDisplay.split(',').map((elem, i) => (
+                                  <span className="mr-2" key={`key-${i}`}>
+                                    {item[elem] ? item[elem] : elem}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
                           </p>
                         </li>
                       );
