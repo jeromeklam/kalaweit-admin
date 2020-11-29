@@ -94,6 +94,7 @@ export class Modify extends Component {
                 donation={this.props.donation}              
                 paymentTypes={this.props.paymentType.items}
                 sessions={this.props.session.items}
+                rates={this.props.rate.models}
                 errors={this.props.donation.updateOneError}
                 onSubmit={this.onSubmit}
                 onCancel={this.onCancel}
@@ -114,6 +115,7 @@ function mapStateToProps(state) {
     donation: state.donation,
     paymentType: state.paymentType,
     session: state.session,
+    rate: state.rate,
   };
 }
 

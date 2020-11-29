@@ -1,6 +1,13 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
-import { InputHidden, InputSelect, InputText, InputCheckbox, roundMonetary } from 'react-bootstrap-front';
+import {
+  InputHidden,
+  InputSelect,
+  InputText,
+  InputCheckbox,
+  roundMonetary,
+  displayMonetary,
+} from 'react-bootstrap-front';
 import {
   InputDate,
   ResponsiveModalOrForm,
@@ -17,39 +24,48 @@ import { getStatus, calculateDonationEndTs } from './';
 
 const afterChange = (name, item) => {
   switch (name) {
-    case 'currentMoney':
-      if (item.currentMoney !== item.dbMoney) {
-        const mnt = roundMonetary(parseFloat(item.don_mnt || 0) / 0.9449, 'fr-FR', item.currentMoney);
-        if (Math.abs(parseFloat(item.don_mnt_input || 0) - mnt) > 0.01) {
-          item.don_mnt_input = mnt;
+    case 'don_mnt':
+      item.don_money_input = item.__inputMoney;
+      item.don_money = item.__dbMoney;
+      if (item.__inputMoney !== item.__dbMoney) {
+        const change1 = item.__getRate(item.__currentMoney, item.__inputMoney);
+        const mnt1 = roundMonetary(
+          parseFloat(item.don_mnt || 0) * change1,
+          'fr-FR',
+          item.__inputMoney,
+        );
+        if (Math.abs(parseFloat(item.don_mnt_input || 0) - mnt1) > 0.01) {
+          item.don_mnt_input = mnt1;
         }
+        console.log('don_mnt', change1, mnt1, item);
       } else {
         item.don_mnt_input = item.don_mnt;
       }
-      item.don_money_input = item.currentMoney;
-      break;
-    case 'don_mnt':
-      item.don_mnt_input = item.don_mnt;
-      item.don_money_input = item.dbMoney;
       break;
     case 'don_mnt_input':
-      if (item.currentMoney !== item.dbMoney) {
-        const mnt = roundMonetary(parseFloat(item.don_mnt_input || 0) * 0.9449, 'fr-FR', item.currentMoney);
-        if (Math.abs(parseFloat(item.don_mnt || 0) - mnt) > 0.01) {
-          item.don_mnt = mnt;
+      item.don_money_input = item.__inputMoney;
+      item.don_money = item.__dbMoney;
+      if (item.__inputMoney !== item.__dbMoney) {
+        const change2 = item.__getRate(item.__currentMoney, item.__dbMoney);
+        const mnt2 = roundMonetary(
+          parseFloat(item.don_mnt_input || 0) * change2,
+          'fr-FR',
+          item.__dbMoney,
+        );
+        if (Math.abs(parseFloat(item.don_mnt || 0) - mnt2) > 0.01) {
+          item.don_mnt = mnt2;
         }
+        console.log('don_mnt_input', change2, mnt2, item);
       } else {
         item.don_mnt = item.don_mnt_input;
       }
-      item.don_money_input = item.currentMoney;
-      item.don_money = item.dbMoney;
       break;
     case 'don_real_ts':
     case 'cause': {
       const endTs = calculateDonationEndTs(item);
       let update = true;
-      const found = item._locked.find(elem => elem.field === 'don_end_ts');
-      if (found && found._locked === false) {
+      const found = item.__locked.find(elem => elem.field === 'don_end_ts');
+      if (found && found.__locked === false) {
         update = false;
       }
       if (update) {
@@ -73,13 +89,6 @@ function Form(props) {
       lockEndTs = false;
     }
   }
-  const lockedFields = [{ field: 'don_end_ts', locked: lockEndTs }];
-  const item = {
-    ...props.item,
-    currentMoney: props.inputMoney,
-    inputMoney: props.inputMoney,
-    dbMoney: props.dbMoney,
-  };
   const {
     values,
     handleChange,
@@ -91,8 +100,9 @@ function Form(props) {
     toggleLockOn,
     toggleLockOff,
     switchMoney,
+    getCurrentMoney,
   } = useForm(
-    item,
+    props.item,
     '1',
     props.onSubmit,
     props.onCancel,
@@ -101,7 +111,14 @@ function Form(props) {
     props.intl,
     afterChange,
     null,
-    lockedFields,
+    [
+      { field: 'don_end_ts', locked: lockEndTs },
+      { field: 'don_mnt', locked: props.modify },
+      { field: 'don_mnt_input', locked: props.modify },
+    ],
+    props.rates,
+    props.inputMoney,
+    props.dbMoney,
   );
   /**
    * Render
@@ -145,7 +162,7 @@ function Form(props) {
   if (values.cause.cause_type && values.cause.cause_type.caut_certificat) {
     allTabs = allTabs.concat(tabs2);
   }
-  const readonlyForm = (values.session && values.session.sess_status === 'CLOSED');
+  const readonlyForm = values.session && values.session.sess_status === 'CLOSED';
   return (
     <ResponsiveModalOrForm
       title={intl.formatMessage({
@@ -276,7 +293,7 @@ function Form(props) {
           </div>
           <div className="row">
             <div className="col-md-w10">
-              {values.inputMoney === values.dbMoney ? (
+              {getCurrentMoney() === props.dbMoney ? (
                 <InputMonetary
                   label={intl.formatMessage({
                     id: 'app.features.donation.form.mnt',
@@ -285,12 +302,16 @@ function Form(props) {
                   labelTop={true}
                   name="don_mnt"
                   id="don_mnt"
-                  inputMoney={values.currentMoney}
+                  inputMoney={getCurrentMoney()}
+                  locked={isLocked('don_mnt')}
                   disabled={readonlyForm}
-                  dbMoney="EUR"
+                  onLockOn={toggleLockOn}
+                  onLockOff={toggleLockOff}
+                  dbMoney={props.dbMoney}
                   value={values.don_mnt}
+                  rateValue={displayMonetary(values.don_mnt_input, props.inputMoney)}
                   onChange={handleChange}
-                  onMoneySwitch={switchMoney}
+                  onMoneySwitch={props.inputMoney !== props.dbMoney ? switchMoney : null}
                 />
               ) : (
                 <InputMonetary
@@ -301,12 +322,16 @@ function Form(props) {
                   labelTop={true}
                   name="don_mnt_input"
                   id="don_mnt_input"
-                  inputMoney={values.currentMoney}
+                  inputMoney={getCurrentMoney()}
+                  locked={isLocked('don_mnt_input')}
                   disabled={readonlyForm}
-                  dbMoney="EUR"
+                  onLockOn={toggleLockOn}
+                  onLockOff={toggleLockOff}
+                  dbMoney={props.dbMoney}
                   value={values.don_mnt_input}
+                  rateValue={displayMonetary(values.don_mnt, props.dbMoney)}
                   onChange={handleChange}
-                  onMoneySwitch={switchMoney}
+                  onMoneySwitch={props.inputMoney !== props.dbMoney ? switchMoney : null}
                 />
               )}
             </div>
@@ -374,7 +399,7 @@ function Form(props) {
       )}
       {values.currentTab === '2' && (
         <div>
-          <div className="row"></div>
+          <div className="row" />
           <div className="row">
             <div className="col-sm-w36">
               <InputSponsors
@@ -392,7 +417,7 @@ function Form(props) {
           </div>
         </div>
       )}
-      {values.currentTab === '3' && 
+      {values.currentTab === '3' && (
         <div>
           <div className="row">
             <div className="col-sm-w18">
@@ -422,7 +447,7 @@ function Form(props) {
               />
             </div>
           </div>
-          {props.modify &&
+          {props.modify && (
             <div>
               <div className="row">
                 <div className="col-sm-w12">
@@ -471,12 +496,11 @@ function Form(props) {
                   />
                 </div>
               </div>
-              <div className="row">
-              </div>
+              <div className="row" />
             </div>
-          }
+          )}
         </div>
-      }
+      )}
       <hr />
     </ResponsiveModalOrForm>
   );

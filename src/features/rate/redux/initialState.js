@@ -3,6 +3,7 @@ import { getNewNormalizedObject } from 'jsonapi-front';
 
 const initialState = {
   items: getNewNormalizedObject('FreeFW_Rate'),
+  models: [],
   page_number: 1,
   page_size: 0,
   filters: new Filter(),

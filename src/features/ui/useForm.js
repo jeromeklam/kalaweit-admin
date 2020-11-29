@@ -77,6 +77,9 @@ const useForm = (
   afterChange = null,
   init = null,
   locked = [],
+  rates = {},
+  inputMoney = 'EUR',
+  dbMoney = 'EUR',
 ) => {
   const [values, setValues] = useState({
     ...initialState,
@@ -93,6 +96,17 @@ const useForm = (
     __loadSickness: false,
     __sending: false,
     __locked: locked,
+    __currentMoney: inputMoney,
+    __rates: rates,
+    __dbMoney: dbMoney,
+    __inputMoney: inputMoney,
+    __getRate: (from, to) => {
+      const idx = rates.find(elem => elem.rate_money_from === from && elem.rate_money_to === to);
+      if (idx) {
+        return idx.rate_change;
+      }
+      return 1;
+    },
   });
   if (init) {
     const newItem = init(values, elems => {
@@ -568,31 +582,47 @@ const useForm = (
 
   const getCurrentTab = () => {
     return values.currentTab;
-  }
+  };
 
-  const isLocked = (p_field) => {
+  const getCurrentMoney = () => {
+    return values.__currentMoney;
+  };
+
+  const isLocked = p_field => {
     const found = values.__locked.find(elem => elem.field === p_field);
     if (found) {
       return found.locked;
     }
     return null;
-  }
+  };
 
-  const toggleLockOn = (p_field) => {
+  const toggleLockOn = p_field => {
     const found = values.__locked.findIndex(elem => elem.field === p_field);
     if (found >= 0) {
       values.__locked[found].locked = true;
     }
     setValues({ ...values });
-  }
+  };
 
-  const toggleLockOff = (p_field) => {
+  const toggleLockOff = p_field => {
     const found = values.__locked.findIndex(elem => elem.field === p_field);
     if (found >= 0) {
       values.__locked[found].locked = false;
     }
     setValues({ ...values });
-  }
+  };
+
+  const switchMoney = () => {
+    if (afterChange) {
+      if (values.__currentMoney === values.__dbMoney) {
+        values.__currentMoney = values.__inputMoney;
+      } else {
+        values.__currentMoney = values.__dbMoney;
+      }
+      afterChange('currentMoney', values);
+    }
+    setValues({ ...values });
+  };
 
   const getErrorMessage = field => {
     //const intl = useIntl();
@@ -601,7 +631,10 @@ const useForm = (
       errors.errors.forEach(error => {
         if (error.source && error.source.parameter === field) {
           if (intl) {
-            message = intl.formatMessage({ id: 'app.errors.code.' + error.code, defaultMessage: 'Unknown error ' + error.code });
+            message = intl.formatMessage({
+              id: 'app.errors.code.' + error.code,
+              defaultMessage: 'Unknown error ' + error.code,
+            });
           }
           return true;
         }
@@ -618,9 +651,11 @@ const useForm = (
     handleNavTab,
     getErrorMessage,
     getCurrentTab,
+    getCurrentMoney,
     isLocked,
     toggleLockOn,
     toggleLockOff,
+    switchMoney,
   };
 };
 

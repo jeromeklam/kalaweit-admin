@@ -108,6 +108,7 @@ export class Create extends Component {
                 dbMoney={'EUR'}
                 paymentTypes={this.props.paymentType.items}
                 sessions={this.props.session.items}
+                rates={this.props.rate.models}
                 errors={this.props.donation.createOneError}
                 onSubmit={this.onSubmit}
                 onCancel={this.onCancel}
@@ -131,6 +132,7 @@ function mapStateToProps(state) {
     paymentType: state.paymentType,
     session: state.session,
     certificate: state.certificate,
+    rate: state.rate,
   };
 }
 

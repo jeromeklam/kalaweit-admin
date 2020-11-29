@@ -1,5 +1,5 @@
 import { freeAssoApi } from '../../../common';
-import { jsonApiNormalizer, getNewNormalizedObject } from 'jsonapi-front';
+import { jsonApiNormalizer, normalizedObjectModeler } from 'jsonapi-front';
 import {
   RATE_LOAD_MORE_BEGIN,
   RATE_LOAD_MORE_SUCCESS,
@@ -71,12 +71,14 @@ export function reducer(state, action) {
       } else {
         list = state.items;
       }
+      const itemsMdl = normalizedObjectModeler(list, 'FreeFW_Rate')
       return {
         ...state,
         loadMorePending: false,
         loadMoreError: null,
         loadMoreFinish: (nbre < state.page_size),
         items: list,
+        models: itemsMdl,
         page_number: state.page_number+1
       };
 
