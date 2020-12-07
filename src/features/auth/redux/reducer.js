@@ -18,6 +18,7 @@ import { reducer as updateConfigReducer } from './updateConfig';
 import { reducer as changeSettingReducer } from './changeSetting';
 import { reducer as setRealmReducer } from './setRealm';
 import { reducer as propagateReducer } from './propagate';
+import { reducer as switchGroupReducer } from './switchGroup';
 
 const reducers = [
   checkIsAuthenticatedReducer,
@@ -31,6 +32,7 @@ const reducers = [
   changeSettingReducer,
   propagateReducer,
   setRealmReducer,
+  switchGroupReducer,
 ];
 
 export default function reducer(state = initialState, action) {

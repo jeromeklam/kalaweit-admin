@@ -28,6 +28,8 @@ const initialState = {
   changeSettingError: null,
   inputMoney: 'EUR',
   displayMoney: 'EUR',
+  switchGroupPending: false,
+  switchGroupError: null,
 };
 
 export default initialState;

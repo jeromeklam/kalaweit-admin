@@ -104,15 +104,15 @@ export function reducer(state, action) {
         const ajv = new Ajv({ allErrors: true, verbose: true, useDefaults: true });
         const validate = ajv.compile(schema);
         validate(more.settings);
-        let defaultRealm = getFromLS('realm');
+        let defaultRealm = user.default_group && user.default_group.id ? user.default_group.id : getFromLS('realm');
         if (user.realms && Array.isArray(user.realms)) {
           console.log(defaultRealm, user.realms);
           const found = user.realms.find(item => {
             return item.id === defaultRealm;
           });
-          console.log(found);
           if (found) {
             realm = found;
+            saveToLS('realm', defaultRealm);
           } else {
             user.realms.forEach(item => {
               realm = item;

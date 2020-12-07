@@ -39,6 +39,7 @@ export const appMenu = types => {
     {
       icon: <HomeIcon />,
       label: <FormattedMessage id="app.features.home.app.menu.home" defaultMessage="Home" />,
+      help: <FormattedMessage id="app.features.home.app.menu.home.help" defaultMessage="Get back home" />,
       url: '/',
       role: 'HOME',
       public: true,
@@ -86,6 +87,7 @@ export const appMenu = types => {
       label: (
         <FormattedMessage id="app.features.home.app.menu.dashboard" defaultMessage="Dashboard" />
       ),
+      help: <FormattedMessage id="app.features.home.app.menu.dashboard.help" defaultMessage="Dashboard" />,
       url: '/dashboard',
       role: 'NAV',
       position: 1,

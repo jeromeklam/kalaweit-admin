@@ -48,7 +48,11 @@ export class Page extends Component {
   }
 
   onRealmSelect(realm_id) {
-    this.props.actions.setRealm(realm_id);
+    this.props.actions.switchGroup(realm_id).then(result => {
+      // On recharge pour bien tout remettre à plat...
+      // @todo : méthode de nettoyage de redux
+      window.location.reload();
+    });
   }
 
   onNavigate(url) {
@@ -155,9 +159,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default injectIntl(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Page),
-);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Page));

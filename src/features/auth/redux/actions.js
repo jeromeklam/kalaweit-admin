@@ -9,3 +9,4 @@ export { updateConfig, dismissUpdateConfigError } from './updateConfig';
 export { changeSetting, dismissChangeSettingError } from './changeSetting';
 export { setRealm } from './setRealm';
 export { propagate } from './propagate';
+export { switchGroup, dismissSwitchGroupError } from './switchGroup';
